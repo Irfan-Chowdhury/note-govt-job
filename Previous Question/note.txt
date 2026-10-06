@@ -1,0 +1,14 @@
+First Format: Which topic ? Translate the Question into Bangla.
+Second Format: Then Write the answer only for Exam in English. (Then Translate into Bangla).
+Third Format: And then Explain with Basic topic wise by bangla
+
+
+
+
+
+Permutation →Combination →Probability →Percentage → Profit & Loss → Ratio → Average → Interest → Time & Work → Time-Speed-Distance → Algebra → Data Interpretation
+
+Percentage → Ratio → Average → Profit/Loss → Interest → Time & Work → TSD → Algebra → P&C → Probability → DI
+
+
+heavily focus on Arithmetic (Profit & Loss, Time & Work, Percentage, Ratio, and Interest) and Algebra managed primarily under BIBM question patterns
