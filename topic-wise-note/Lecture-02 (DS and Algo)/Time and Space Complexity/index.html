@@ -1,0 +1,1107 @@
+<!DOCTYPE html><html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="description" content="Complete offline Bangla study guide for Time and Space Complexity, Government IT exam preparation."><title>Time &amp; Space Complexity — Offline Study Guide</title><style>:root{color-scheme:light;--bg:#f4f7fb;--paper:#fff;--text:#1a2c42;--muted:#597083;--accent:#1e69bd;--accent2:#128d79;--line:#d9e3ee;--soft:#eef4fa;--codebg:#122238;--codefg:#ebf4ff;--shadow:0 8px 30px rgba(30,60,90,.06)}
+[data-theme="dark"]{color-scheme:dark;--bg:#0c1725;--paper:#152437;--text:#ebf3fa;--muted:#b5c5d8;--accent:#80baff;--accent2:#67d6b5;--line:#30445d;--soft:#1b3046;--codebg:#090f1b;--codefg:#e5f3fc;--shadow:0 8px 30px rgba(0,0,0,.2)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:'Kohinoor Bangla','Noto Sans Bengali','Lohit Bengali','Candara','Carlito',system-ui,sans-serif;line-height:1.85;font-size:15px}body,button,input,select{font-family:'Kohinoor Bangla','Noto Sans Bengali','Lohit Bengali','Candara','Carlito',system-ui,sans-serif}code,pre,.num{font-family:Consolas,'Liberation Mono',monospace}button,select,input{font-size:inherit}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}button{cursor:pointer;border:0;border-radius:10px;background:var(--accent);padding:10px 15px;color:#fff;font-weight:700;line-height:1.2;min-height:40px}button:hover{filter:brightness(1.1)}button:disabled{opacity:.45;cursor:not-allowed}button.soft{background:var(--soft);color:var(--text);border:1px solid var(--line)}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #eab45a;outline-offset:2px}
+.sidebar{position:fixed;top:0;bottom:0;left:0;width:282px;background:var(--paper);border-right:1px solid var(--line);padding:23px 15px;overflow-y:auto;z-index:10}.brand{display:flex;gap:12px;align-items:center;padding:5px 12px 21px;border-bottom:1px solid var(--line)}.brand-mark{width:43px;height:43px;border-radius:13px;background:#116eaa;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px}.brand strong{display:block;font-size:15px;line-height:1.35}.brand small{display:block;color:var(--muted);font-size:11px;line-height:1.5}.nav-group{margin:20px 8px 8px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-size:10px;font-weight:800}.toc{display:block;padding:10px 12px;margin:3px 0;border-radius:10px;color:var(--text);font-size:13px;line-height:1.45}.toc:hover,.toc.active{background:var(--soft);color:var(--accent);text-decoration:none}.toc.active{border-left:3px solid var(--accent);font-weight:700}.sidebar-foot{margin:24px 10px;color:var(--muted);font-size:11px;line-height:1.7}
+.main{margin-left:282px;max-width:1500px}.topbar{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line);padding:10px clamp(18px,4vw,52px);display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:63px}.search-wrap{position:relative;flex:1;max-width:580px}.search-wrap input{width:100%;border-radius:11px;border:1px solid var(--line);background:var(--soft);color:var(--text);padding:10px 13px 10px 38px;min-height:40px;outline:none}.search-ico{position:absolute;left:13px;top:10px;color:var(--muted)}.tool-buttons{display:flex;gap:7px;align-items:center}.icon-btn{border:1px solid var(--line);background:var(--soft);color:var(--text);padding:7px 10px;font-size:14px;white-space:nowrap}.mobile-menu{display:none}.search-results{position:absolute;top:calc(100% + 6px);left:0;right:0;max-height:290px;overflow:auto;background:var(--paper);box-shadow:var(--shadow);border:1px solid var(--line);border-radius:12px;z-index:20;padding:7px;display:none}.search-results.show{display:block}.result-item{display:block;width:100%;border:0;background:transparent;text-align:left;color:var(--text);font-weight:500;padding:10px;border-radius:7px;line-height:1.5}.result-item:hover{background:var(--soft)}.result-item small{display:block;color:var(--muted);font-size:11px}.search-target{outline:3px solid #eeb64b;outline-offset:4px;border-radius:4px}
+.content{margin:0 auto;max-width:1060px;padding:24px 40px 90px}.hero{background:linear-gradient(120deg,#123a67,#20649b 60%,#168b85);border-radius:20px;color:white;padding:32px 38px;margin-bottom:26px;box-shadow:var(--shadow)}.hero p{color:#dcf2fd;max-width:750px;margin:9px 0}.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.7px;font-weight:800;color:#bef6e9}.hero h1{font-family:Candara,Calibri,Carlito,system-ui,sans-serif;font-size:clamp(25px,4vw,42px);line-height:1.2;margin:12px 0}.stats{display:flex;gap:9px;flex-wrap:wrap;margin-top:17px}.stat{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.2);border-radius:9px;padding:7px 13px;font-size:12px}.chapter{background:var(--paper);border:1px solid var(--line);border-radius:17px;padding:clamp(19px,4vw,42px);margin-bottom:22px;box-shadow:var(--shadow)}.chapter h1{font-size:clamp(21px,2.2vw,29px);line-height:1.5;letter-spacing:-.25px;margin:0 0 16px;color:var(--text);padding-bottom:13px;border-bottom:2px solid var(--line)}.chapter h2{font-size:19px;color:var(--accent);margin:32px 0 11px;line-height:1.5;scroll-margin-top:90px}.chapter p{margin:11px 0}.chapter li{padding:2px 0}.chapter ul,.chapter ol{padding-left:25px}.chapter strong{color:var(--text)}.chapter blockquote{background:var(--soft);border-left:4px solid var(--accent2);padding:13px 18px;margin:15px 0;border-radius:0 10px 10px 0}.chapter blockquote p{margin:0}.chapter table,.quiz-print-table{border-collapse:collapse;width:100%;margin:16px 0;font-size:13px;line-height:1.6;display:table}.chapter th,.chapter td,.quiz-print-table td,.quiz-print-table th{border:1px solid var(--line);padding:10px 12px;text-align:left;vertical-align:top}.chapter th,.quiz-print-table th{background:var(--soft);font-weight:800}.chapter tr:nth-child(even) td{background:var(--bg)}.chapter :not(pre)>code{background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere;font-size:.89em}.chapter pre{background:var(--codebg);color:var(--codefg);padding:18px 19px;border-radius:11px;white-space:pre;overflow-x:auto;line-height:1.52;font-size:12.5px;tab-size:4}.chapter pre code{color:inherit}.diagram{margin:18px 0;border:1px solid var(--line);border-radius:13px;background:white;padding:15px 10px 8px}.diagram svg{width:100%;height:auto;display:block;max-height:370px}.diagram figcaption{text-align:center;color:#54677e;font-size:12px;padding:5px}.chapter details{margin:15px 0;padding:12px 15px;border:1px solid var(--line);background:var(--soft);border-radius:10px}.chapter details summary{font-weight:700;cursor:pointer;color:var(--accent)}.chapter details[open] summary{margin-bottom:8px} .print-note{border:1px solid var(--line);border-radius:8px;padding:15px;background:var(--soft)}
+.interactive{border:1px solid #9dc8e8;border-radius:14px;background:var(--soft);padding:20px;margin:22px 0}.widget-head h3{font-size:18px;margin:0;color:var(--accent)}.widget-head p{font-size:13px;margin:3px 0 13px}.controls{display:flex;gap:9px;align-items:center;flex-wrap:wrap}.controls label{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:13px}.controls select{background:var(--paper);border:1px solid var(--line);color:var(--text);padding:8px;border-radius:8px}.cell-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px}.cell{min-width:57px;flex:1;border:2px solid var(--line);border-radius:10px;padding:8px 3px;text-align:center;background:var(--paper);font-weight:800;position:relative}.cell small{display:block;font-size:10px;color:var(--muted);line-height:1.2}.cell.out{opacity:.25}.cell.mid{border-color:#db8a20;background:rgba(224,141,40,.17)}.cell.found{border-color:#119671;background:rgba(23,155,105,.18)}.status{font-size:13px;color:var(--text);font-weight:700}.small-list{font-size:12px;color:var(--muted);line-height:1.7;max-height:150px;overflow:auto}.bars{display:flex;align-items:flex-end;gap:7px;min-height:215px;padding:17px 5px 10px;border-bottom:2px solid var(--line)}.sort-bar{position:relative;flex:1;max-width:85px;text-align:center;border-radius:7px 7px 0 0;background:#5488bd;color:white;font-weight:800;transition:height .25s,background-color .25s;display:flex;align-items:flex-start;justify-content:center;padding-top:10px}.sort-bar.active{background:#e29734}.sort-bar.sorted{background:#159b79}.caption{font-size:12px;color:var(--muted)}.stack-grid{display:flex;flex-direction:column;gap:5px;align-items:center;padding-top:15px;min-height:125px}.stack-frame{background:#2e75ba;color:#fff;border-radius:8px;padding:8px 16px;width:70%;text-align:center;font-weight:800}.stack-frame:last-child{background:#139476}
+.quiz-panel{border:1px solid var(--line);border-radius:17px;background:var(--paper);padding:clamp(18px,3vw,40px);box-shadow:var(--shadow)}.quiz-panel h1{font-size:28px;margin:0 0 6px}.quiz-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:15px}.quiz-card{border:1px solid var(--line);border-radius:12px;padding:16px;background:var(--paper)}.quiz-number{color:var(--accent);font-size:12px;font-weight:800}.quiz-q{font-size:14px;font-weight:750;line-height:1.6;margin:8px 0 14px}.answer{display:flex;align-items:flex-start;gap:8px;border:1px solid var(--line);background:var(--soft);color:var(--text);text-align:left;border-radius:8px;width:100%;padding:10px;font-weight:500;margin:6px 0;min-height:42px;font-size:12px}.answer .letter{font-weight:800;color:var(--accent);min-width:19px}.answer.right{background:rgba(16,147,104,.13);border-color:#24ab7e}.answer.wrong{background:rgba(202,66,71,.12);border-color:#df6469}.answer:disabled{opacity:1}.feedback{padding:10px;background:var(--soft);border-radius:7px;margin-top:10px;font-size:12px;line-height:1.7}.quiz-toolbar{position:sticky;top:64px;z-index:3;padding:12px;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:15px 0 22px}.quiz-toolbar select{border:1px solid var(--line);background:var(--soft);border-radius:7px;color:var(--text);padding:8px}.score{font-weight:800;color:var(--accent2)}.hint{color:var(--muted);font-size:12px}.banner{padding:12px 16px;border-left:4px solid var(--accent);background:var(--soft);border-radius:6px;margin:15px 0}.footer{text-align:center;color:var(--muted);font-size:12px;padding:18px}.print-only{display:none}
+@media(max-width:950px){.sidebar{transform:translateX(-100%);transition:transform .2s}.sidebar.open{transform:translateX(0);box-shadow:15px 0 40px rgba(0,0,0,.18)}.mobile-menu{display:inline-block}.main{margin-left:0}.content{padding:18px 17px 50px}.topbar{padding:8px 16px}.hero{padding:28px 25px}}
+@media(max-width:600px){.chapter{padding:18px 15px}.chapter h2{font-size:17px}.chapter table{display:block;overflow-x:auto;white-space:nowrap}.hero h1{font-size:29px}.topbar .hide-sm{display:none}.quiz-grid{grid-template-columns:1fr}.cell{min-width:37px;font-size:11px}.diagram{padding:5px}.chapter pre{font-size:11.5px}}
+@page{size:A4;margin:16mm 13mm 17mm}
+@media print{html{scroll-behavior:auto}body{font-size:10.4pt;background:#fff;color:#142235;line-height:1.55;-webkit-print-color-adjust:exact;print-color-adjust:exact}.sidebar,.topbar,.interactive,.quiz-panel,.no-print{display:none!important}.print-only{display:block}.main{margin:0;max-width:none}.content{padding:0;margin:0;max-width:none}.hero{box-shadow:none;break-after:page;border-radius:0;padding:20mm 8mm;background:#174877;color:#fff}.hero h1{font-size:27pt}.chapter{border:0;box-shadow:none;padding:0;margin:0 0 15px;border-radius:0;break-before:page}.chapter h1{font-size:19pt;border-bottom:2px solid #cbd8e5;break-after:avoid}.chapter h2{font-size:13.4pt;margin:16px 0 8px;break-after:avoid}.chapter table,.quiz-print-table{font-size:8.2pt}.chapter td,.chapter th,.quiz-print-table td,.quiz-print-table th{padding:4px 6px}.chapter pre{font-size:8pt;white-space:pre-wrap;overflow-wrap:anywhere;padding:12px;page-break-inside:avoid}.chapter blockquote,.chapter .diagram,.chapter details,.print-note{page-break-inside:avoid}.chapter p,.chapter li{orphans:3;widows:3}.diagram svg{max-height:220px}.diagram{padding:8px 5px;max-width:100%;break-inside:avoid}.diagram figcaption{font-size:8pt}.chapter details{padding:8px}.chapter details > *{display:block!important}.chapter details summary{list-style:none}.chapter tr{break-inside:avoid}.exam-appendix{break-before:page}.exam-appendix h1{font-size:18pt}.exam-appendix h2{font-size:14pt}.quiz-print-table{width:100%}.score{color:#193b5f}.footer{margin-top:5mm}}
+
+.square-grid{display:grid;grid-template-columns:repeat(var(--sqn),minmax(18px,30px));gap:4px;margin-top:15px}.sqcell{width:27px;height:25px;background:#2f7ac8;border-radius:4px}.sqcell:nth-child(2n){background:#71abe7}
+
+@media print{#chapter-7,#chapter-8{break-before:auto}}
+@page{@bottom-right{content: "Page " counter(page) " / " counter(pages);font-size:8pt;color:#60758a}}
+@media print{.examquestion{padding:5px 0;break-inside:avoid}.answerline{font-size:8.5pt;color:#526276}.examquestions{columns:1}.print-toc{break-after:page}.print-toc li{margin:9px 0}}</style></head><body><aside id="sidebar" class="sidebar"><div class="brand"><div class="brand-mark">O(n)</div><div><strong>Complexity Masterclass</strong><small>Bangla · Exam-focused · Offline</small></div></div><div class="nav-group">CHAPTER NAVIGATION</div><a class="toc" href="#chapter-1">১. ভিত্তি: Algorithm, Analysis ও Input Size</a><a class="toc" href="#chapter-2">২. Asymptotic Notation: Big O, Ω, Θ, o, ω</a><a class="toc" href="#chapter-3">৩. Common Time Complexities ও Growth Chart</a><a class="toc" href="#chapter-4">৪. Code Analysis: Statement, Loop, Recursion</a><a class="toc" href="#chapter-5">৫. Space Complexity: Input, Auxiliary, Stack, Trade-off</a><a class="toc" href="#chapter-6">৬. Important Algorithms: Search, Sort, Fibonacci, Array &amp; String</a><a class="toc" href="#chapter-7">৭. Bangladesh Government IT Exam &amp; Interview Preparation</a><a class="toc" href="#chapter-8">৮. Final Revision Sheet — One-Page Exam Checklist</a><div class="nav-group">PRACTICE & REVISION</div><a class="toc" href="#exam-practice">MCQs & Mock Test</a><div class="sidebar-foot">No internet, account, or third-party libraries required.<br>Generated practice questions are not verified past papers.</div></aside><main class="main"><div class="topbar"><button class="icon-btn mobile-menu" id="menuToggle" aria-expanded="false" aria-controls="sidebar">☰ Chapters</button><div class="search-wrap"><span class="search-ico">⌕</span><input id="noteSearch" type="search" placeholder="Search notes… / বিষয় খুঁজুন" aria-label="Search study notes" autocomplete="off"><div id="searchResults" class="search-results" role="listbox"></div></div><div class="tool-buttons"><button id="themeToggle" class="icon-btn">◐ Dark</button><button id="printBtn" class="icon-btn hide-sm">⎙ Print</button></div></div><div class="content"><header class="hero"><div class="eyebrow">Bangladesh Govt IT Exam Preparation</div><h1>Time Complexity &amp; Space Complexity</h1><p>Beginner → Advanced · বাংলায় ব্যাখ্যা, English definitions, C/C++/Java examples, step-by-step visualizations, 46 explained MCQs এবং Full Practice Test।</p><div class="stats"><span class="stat">8 Chapters</span><span class="stat">46 MCQs</span><span class="stat">Sorting Animation</span><span class="stat">100% Offline</span></div></header><section class="chapter" id="chapter-1"><h1>১. ভিত্তি: Algorithm, Analysis ও Input Size</h1>
+<blockquote>
+<p><strong>Learning outcome:</strong> Algorithm কী, কেন বিশ্লেষণ করি, <code>n</code> কী বোঝায়, এবং Time–Space Complexity-এর সঠিক পার্থক্য বুঝতে পারবেন।</p>
+</blockquote>
+<h2>১.১ Algorithm কী?</h2>
+<p><strong>English exam definition:</strong> <em>An algorithm is a finite, well-defined sequence of unambiguous steps to solve a problem or compute a result.</em></p>
+<p>বাংলায়: একটি নির্দিষ্ট সমস্যা সমাধানের জন্য পরিষ্কার, সুনির্দিষ্ট এবং সসীম সংখ্যক ধাপের পদ্ধতিকে <strong>Algorithm</strong> বলে। উদাহরণ—ক্লাসের সর্বোচ্চ নম্বর বের করা: (১) প্রথম নম্বরকে সর্বোচ্চ ধরা, (২) বাকি নম্বরগুলোর সঙ্গে তুলনা করা, (৩) বেশি পেলে সর্বোচ্চ পরিবর্তন করা, (৪) শেষে ফল প্রকাশ করা।</p>
+<p><strong>একটি ভালো Algorithm-এর বৈশিষ্ট্য:</strong> Input (শূন্য বা একাধিক হতে পারে), Output (অন্তত একটি), Definiteness (প্রতিটি ধাপ স্পষ্ট), Finiteness (শেষ হবে), Effectiveness (ধাপ বাস্তবে সম্পাদনযোগ্য)। Correctness এবং Efficiency আলাদাভাবে বিচার করা হয়।</p>
+<pre><code class="language-text">MAXIMUM(A, n)
+    largest = A[0]
+    for i = 1 to n-1
+        if A[i] &gt; largest
+            largest = A[i]
+    return largest
+</code></pre>
+<p>এখানে সর্বোচ্চ <strong>n−1</strong>টি comparison হয়; তাই Input বাড়লে কাজ লিনিয়ারভাবে বাড়ে।</p>
+<h2>১.২ Algorithm Analysis কী এবং কেন প্রয়োজন?</h2>
+<p><strong>English exam definition:</strong> <em>Algorithm analysis studies the computational resources, especially time and memory, required by an algorithm as a function of input size.</em></p>
+<p>একই সমস্যার একাধিক সমাধান থাকতে পারে। কোনটি বড় Input-এর ক্ষেত্রে বেশি কার্যকর, তা বোঝার জন্য Time ও Memory-এর Growth পরীক্ষা করি। শুধু ঘড়িতে মেপে '২ সেকেন্ড' বলা যথেষ্ট নয়—কম্পিউটার, Compiler, Language, Network, Cache ইত্যাদি বদলালে সময় বদলায়। Complexity মূলত <strong>Input Size পরিবর্তনের সঙ্গে Resource Requirement-এর বৃদ্ধির ধরণ</strong> প্রকাশ করে।</p>
+<figure class="diagram"><svg viewBox="0 0 760 240" role="img" aria-label="Algorithm → Analysis → Resource Efficiency" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="35" y="35" width="194" height="70" rx="13" fill="#e7f2ff" stroke="#94aec9" stroke-width="1.4"/><text x="132" y="62" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Problem &amp; Input</text><text x="132" y="83" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">n = input size</text><line x1="229" y1="70" x2="280" y2="70" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="284" y="35" width="192" height="70" rx="13" fill="#eaf9f3" stroke="#94aec9" stroke-width="1.4"/><text x="380" y="62" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Design Algorithm</text><text x="380" y="82" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">steps + data</text><line x1="478" y1="70" x2="529" y2="70" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="532" y="35" width="192" height="70" rx="13" fill="#fff0df" stroke="#94aec9" stroke-width="1.4"/><text x="628" y="62" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Analyze Growth</text><text x="628" y="83" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">Time + Space</text><rect x="160" y="159" width="440" height="64" rx="13" fill="#f1f5fb" stroke="#94aec9" stroke-width="1.4"/><text x="380" y="187" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">Does it remain efficient when n grows?</text><text x="380" y="209" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">Compare alternatives, optimize if needed</text><line x1="628" y1="105" x2="628" y2="186" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="600" y1="191" x2="600" y2="191" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/></svg><figcaption>Algorithm → Analysis → Resource Efficiency</figcaption></figure>
+<h2>১.৩ Input Size <code>n</code> কী?</h2>
+<ul>
+<li>৫টি সংখ্যার Array: <code>n = 5</code>; ১০ লাখের Array: <code>n = 1,000,000</code>।</li>
+<li>String Search-এ <code>n</code> String-এর দৈর্ঘ্য হতে পারে।</li>
+<li>Graph-এ প্রায়ই দুটি মাপ লাগে: <code>V</code> = Vertex ও <code>E</code> = Edge; তখন Complexity <code>O(V+E)</code> হতে পারে।</li>
+<li>Matrix-এ <code>r × c</code> Element; দুটি Dimension-ই আলাদাভাবে ধরতে হতে পারে।</li>
+<li>দুইটি ভিন্ন Array: দৈর্ঘ্য <code>n</code> ও <code>m</code> হলে Nested Loop-এর Complexity <code>O(nm)</code>, অকারণে <code>O(n²)</code> নয়।</li>
+</ul>
+<h2>১.৪ Time Complexity বনাম Space Complexity</h2>
+<table>
+<thead>
+<tr>
+  <th>দিক</th>
+  <th>Time Complexity</th>
+  <th>Space Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>প্রশ্ন</td>
+  <td>কতগুলো মূল Operation/Step?</td>
+  <td>কত Memory প্রয়োজন?</td>
+</tr>
+<tr>
+  <td>সাধারণ একক</td>
+  <td>Growth in steps</td>
+  <td>Growth in memory cells/bytes</td>
+</tr>
+<tr>
+  <td>উদাহরণ</td>
+  <td>Array scan → <code>O(n)</code> time</td>
+  <td>Input বাদে sum variable → <code>O(1)</code> auxiliary</td>
+</tr>
+<tr>
+  <td>গুরুত্বপূর্ণ সতর্কতা</td>
+  <td>Big O সরাসরি সেকেন্ড নয়</td>
+  <td>Auxiliary ও Total Space এক বিষয় নয়</td>
+</tr>
+</tbody>
+</table>
+<p><strong>লাইব্রেরি উদাহরণ (আগের আলোচনার ধারণা):</strong> সাজানো নয় এমন ১০০০টি বইয়ের মধ্যে একটি বই খুঁজতে শুরু থেকে একটি একটি করে দেখা (Linear Search) Worst Case-এ ১০০০টি পরীক্ষা করতে পারে, <code>O(n)</code>। সাজানো বইয়ের Catalog-এ Binary Search প্রত্যেক ধাপে সম্ভাব্য অংশ অর্ধেক করে, <code>O(log n)</code>। তবে Binary Search-এর জন্য সাজানো ও Random-Access উপযোগী তালিকা প্রয়োজন।</p>
+<h2>১.৫ Best, Average ও Worst Case</h2>
+<p><code>A = [10, 20, 30, 40, 50]</code>-এ <strong>Linear Search</strong> দিয়ে <code>x</code> খুঁজলে:</p>
+<table>
+<thead>
+<tr>
+  <th>Case</th>
+  <th>উদাহরণ</th>
+  <th style="text-align:right">Comparisons</th>
+  <th>Tight bound</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Best</td>
+  <td><code>x = 10</code></td>
+  <td style="text-align:right">১</td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Average*</td>
+  <td>লক্ষ্য সমান সম্ভাবনায় যেকোনো অবস্থানে</td>
+  <td style="text-align:right"><code>(n+1)/2</code></td>
+  <td><code>Θ(n)</code></td>
+</tr>
+<tr>
+  <td>Worst</td>
+  <td><code>x = 50</code> অথবা অনুপস্থিত</td>
+  <td style="text-align:right">সর্বোচ্চ <code>n</code></td>
+  <td><code>Θ(n)</code></td>
+</tr>
+</tbody>
+</table>
+<p>* <strong>Average</strong> নির্দিষ্ট Probability Distribution-এর ওপর নির্ভর করে; প্রতিটি Algorithm-এর জন্য 'মাঝের অবস্থান' ধরে নেওয়া যায় না।</p>
+<p><strong>বিশেষ পরীক্ষার ফাঁদ:</strong> <code>O()</code> নিজে Worst Case-এর সমার্থক নয়। এটি Mathematical Upper Bound; নির্দিষ্ট Best/Average/Worst-case Function-এর জন্যও Big O ব্যবহার করা যায়।</p>
+<h2>১.৬ একটি Code-এর Operation Count</h2>
+<pre><code class="language-c">int sum = 0;                // একবার initialization
+for (int i = 0; i &lt; n; i++) // loop n iterations
+    sum += a[i];            // n বার addition/assignment
+printf(&quot;%d&quot;, sum);          // একবার output
+</code></pre>
+<p>এখানে মোট কাজ <code>an+b</code> আকারের (a,b ধ্রুবক)। <strong>Growth:</strong> <code>Θ(n)</code> time। <code>sum</code> এবং <code>i</code> স্থির সংখ্যক Memory Cell ⇒ <code>Θ(1)</code> auxiliary space। Input Array <code>a</code>-সহ মোট Space ⇒ <code>Θ(n)</code>।</p>
+</section>
+<section class="chapter" id="chapter-2"><h1>২. Asymptotic Notation: Big O, Ω, Θ, o, ω</h1>
+<blockquote>
+<p><strong>Learning outcome:</strong> Bound-এর সঠিক অর্থ, Formal Definition, Constant ও Dominant Term বাদ দেওয়ার নিয়ম শিখবেন।</p>
+</blockquote>
+<h2>২.১ কেন Asymptotic Analysis?</h2>
+<p>ধরি দুটি Algorithm-এর Operation Count <code>T₁(n)=3n+5</code>, <code>T₂(n)=n²+2</code>। ছোট n-এ ফল ভিন্ন হতে পারে, কিন্তু অনেক বড় n-এর জন্য Growth Trend-ই প্রধান। Asymptotic Analysis-এ স্থির Constant এবং Lower-order Terms Growth Classification পরিবর্তন করে না।</p>
+<h2>২.২ Big O — Upper Bound</h2>
+<p><strong>English:</strong> <em><code>f(n) = O(g(n))</code> if there exist constants <code>c &gt; 0</code> and <code>n₀</code> such that <code>0 ≤ f(n) ≤ c g(n)</code> for every <code>n ≥ n₀</code>.</em></p>
+<p>উদাহরণ: <code>f(n) = 3n + 5</code>। <code>n ≥ 1</code> হলে <code>3n+5 ≤ 8n</code>। কাজেই <code>3n+5 = O(n)</code>। <strong>অর্থ:</strong> পর্যাপ্ত বড় n-এ f(n) কোনো ধ্রুবক গুণিতক <code>n</code>-এর উপরে যায় না।</p>
+<h2>২.৩ Big Omega (Ω) — Lower Bound</h2>
+<p><strong>English:</strong> <em><code>f(n) = Ω(g(n))</code> if for all sufficiently large n, <code>f(n) ≥ c g(n)</code> for some constant <code>c &gt; 0</code>.</em></p>
+<p><code>3n+5 ≥ 3n</code> ⇒ <code>3n+5 = Ω(n)</code>। এর মানে <strong>অন্তত সেই Growth Rate-এর সমান</strong>।</p>
+<h2>২.৪ Big Theta (Θ) — Tight Bound</h2>
+<p><strong>English:</strong> <em><code>f(n) = Θ(g(n))</code> if <code>f(n)</code> is both <code>O(g(n))</code> and <code>Ω(g(n))</code>.</em></p>
+<p><code>3n+5 = Θ(n)</code>; কারণ একই সঙ্গে Upper এবং Lower Bound <code>n</code> দিয়ে প্রতিষ্ঠিত। পরীক্ষায় 'Exact Asymptotic Order' জিজ্ঞেস করলে Θ উপযোগী। <strong>সঠিকভাবে:</strong> <code>n = O(n²)</code> সত্য, কিন্তু <code>n = Θ(n²)</code> ভুল।</p>
+<figure class="diagram"><svg viewBox="0 0 760 230" role="img" aria-label="Asymptotic bounds apply for sufficiently large n" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="25" y="35" width="220" height="165" rx="13" fill="#e7f1ff" stroke="#94aec9" stroke-width="1.4"/><text x="135" y="76" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="24" font-weight="600" text-anchor="middle">O(g(n))</text><text x="135" y="107" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">Upper Bound</text><text x="135" y="142" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">f(n) ≤ c·g(n)</text><rect x="270" y="35" width="220" height="165" rx="13" fill="#e7fbf3" stroke="#94aec9" stroke-width="1.4"/><text x="380" y="76" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="24" font-weight="600" text-anchor="middle">Ω(g(n))</text><text x="380" y="107" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">Lower Bound</text><text x="380" y="142" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">f(n) ≥ c·g(n)</text><rect x="515" y="35" width="220" height="165" rx="13" fill="#fff2dd" stroke="#94aec9" stroke-width="1.4"/><text x="625" y="76" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="24" font-weight="600" text-anchor="middle">Θ(g(n))</text><text x="625" y="107" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">Tight Bound</text><text x="625" y="142" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">c₁g(n) ≤ f(n)</text><text x="625" y="165" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">≤ c₂g(n)</text></svg><figcaption>Asymptotic bounds apply for sufficiently large n</figcaption></figure>
+<h2>২.৫ Little o এবং Little omega (Advanced)</h2>
+<ul>
+<li><code>f(n) = o(g(n))</code> মানে f <strong>strictly slower-growing</strong>: <code>lim f(n)/g(n) = 0</code> (যখন সংশ্লিষ্ট Limit প্রযোজ্য)। যেমন <code>n = o(n²)</code>।</li>
+<li><code>f(n) = ω(g(n))</code> মানে f <strong>strictly faster-growing</strong>: <code>lim f(n)/g(n) = ∞</code>। যেমন <code>n² = ω(n)</code>।</li>
+<li><code>n</code> কিন্তু <code>o(n)</code> নয়; <code>n = Θ(n)</code>।</li>
+</ul>
+<h2>২.৬ Growth Simplification — পরীক্ষার Shortcut</h2>
+<table>
+<thead>
+<tr>
+  <th>Operation Count</th>
+  <th>Tight asymptotic bound</th>
+  <th>কারণ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>100</code></td>
+  <td><code>Θ(1)</code></td>
+  <td>Constant</td>
+</tr>
+<tr>
+  <td><code>7n + 900</code></td>
+  <td><code>Θ(n)</code></td>
+  <td>Constant, coefficient বাদ</td>
+</tr>
+<tr>
+  <td><code>3n² + 8n + 1</code></td>
+  <td><code>Θ(n²)</code></td>
+  <td>Highest-degree term</td>
+</tr>
+<tr>
+  <td><code>n log₂n + 20n</code></td>
+  <td><code>Θ(n log n)</code></td>
+  <td>Dominant term</td>
+</tr>
+<tr>
+  <td><code>n³ + 2ⁿ</code></td>
+  <td><code>Θ(2ⁿ)</code></td>
+  <td>Exponential eventually dominates</td>
+</tr>
+<tr>
+  <td><code>log₂n</code> vs <code>log₁₀n</code></td>
+  <td>উভয় <code>Θ(log n)</code></td>
+  <td>Base পরিবর্তন Constant Factor</td>
+</tr>
+</tbody>
+</table>
+<p><strong>পরীক্ষায় Calculation:</strong> <code>T(n)=5n²+3n+7</code> ⇒ সবচেয়ে দ্রুত বাড়ে <code>n²</code> ⇒ <strong>Θ(n²)</strong>। কিন্তু সব ক্ষেত্রে সংখ্যাগত Runtime-ও বড় হবে, এমন দাবি করা যাবে না; Constant ও hardware গুরুত্বপূর্ণ।</p>
+<p>&lt;details&gt;&lt;summary&gt;Formal Bound প্রমাণ: `5n² + 3n + 7 = Θ(n²)`&lt;/summary&gt;
+`n ≥ 1`-এ `5n² ≤ 5n²+3n+7 ≤ 15n²` (কারণ `3n ≤ 3n²`, `7 ≤ 7n²`)। অতএব `c₁=5`, `c₂=15`, `n₀=1` বাছলে দুটি Bound পূরণ হয়।
+&lt;/details&gt;</p>
+</section>
+<section class="chapter" id="chapter-3"><h1>৩. Common Time Complexities ও Growth Chart</h1>
+<blockquote>
+<p><strong>Learning outcome:</strong> সবচেয়ে সাধারণ আটটি Growth Class চিনবেন, তুলনা করবেন, Code-এর সঙ্গে মিলিয়ে দেখবেন।</p>
+</blockquote>
+<figure class="diagram"><svg viewBox="0 0 760 300" role="img" aria-label="Comparative growth (conceptual operation counts, logarithmic vertical scale)" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect width="760" height="300" rx="10" fill="#ffffff"/><line x1="68" y1="235.0" x2="730" y2="235.0" stroke="#e5ebf2"/><text x="52" y="239.0" fill="#6b7b90" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">10^0</text><line x1="68" y1="183.8" x2="730" y2="183.8" stroke="#e5ebf2"/><text x="52" y="187.75" fill="#6b7b90" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">10^1</text><line x1="68" y1="132.5" x2="730" y2="132.5" stroke="#e5ebf2"/><text x="52" y="136.5" fill="#6b7b90" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">10^2</text><line x1="68" y1="81.2" x2="730" y2="81.2" stroke="#e5ebf2"/><text x="52" y="85.25" fill="#6b7b90" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">10^3</text><line x1="68" y1="30.0" x2="730" y2="30.0" stroke="#e5ebf2"/><text x="52" y="34.0" fill="#6b7b90" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">10^4</text><text x="68.0" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">2</text><text x="174.66666666666666" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">4</text><text x="281.3333333333333" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">6</text><text x="388.0" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">8</text><text x="494.66666666666663" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">10</text><text x="601.3333333333334" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">12</text><text x="708.0" y="254" fill="#5f7085" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">14</text><text x="380" y="287" fill="#587086" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="13" font-weight="600" text-anchor="middle">Input size n</text><text x="87" y="19" fill="#587086" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="13" font-weight="normal" text-anchor="start">Operations (log scale)</text><polyline points="68.00,235.00 121.33,225.27 174.67,220.36 228.00,217.20 281.33,214.94 334.67,213.19 388.00,211.79 441.33,210.63 494.67,209.64 548.00,208.78 601.33,208.03 654.67,207.36 708.00,206.76" fill="none" stroke="#0891b2" stroke-width="3"/><polyline points="68.00,220.36 121.33,211.79 174.67,205.71 228.00,201.00 281.33,197.15 334.67,193.89 388.00,191.07 441.33,188.58 494.67,186.36 548.00,184.34 601.33,182.51 654.67,180.82 708.00,179.25" fill="none" stroke="#2271d6" stroke-width="3"/><polyline points="68.00,220.36 121.33,202.06 174.67,191.07 228.00,183.20 281.33,177.09 334.67,172.09 388.00,167.86 441.33,164.21 494.67,161.00 548.00,158.13 601.33,155.53 654.67,153.17 708.00,151.01" fill="none" stroke="#13a777" stroke-width="3"/><polyline points="68.00,205.71 121.33,188.58 174.67,176.43 228.00,167.00 281.33,159.30 334.67,152.79 388.00,147.14 441.33,142.17 494.67,137.72 548.00,133.69 601.33,130.01 654.67,126.63 708.00,123.50" fill="none" stroke="#e38620" stroke-width="3"/><polyline points="68.00,205.71 121.33,191.07 174.67,176.43 228.00,161.79 281.33,147.14 334.67,132.50 388.00,117.86 441.33,103.22 494.67,88.57 548.00,73.93 601.33,59.29 654.67,44.64 708.00,30.00" fill="none" stroke="#db486c" stroke-width="3"/></svg><figcaption>Comparative growth (conceptual operation counts, logarithmic vertical scale)</figcaption></figure><div class="interactive" id="growthWidget">
+<div class="widget-head"><h3>Interactive Complexity Growth Graph</h3><p>Input n বাড়িয়ে দেখুন; Linear Y-axis-এ Exponential Curve অন্যগুলোকে ছোট দেখায়, তাই Logarithmic Y-axis ব্যবহার করুন।</p></div>
+<div class="controls"><label>n = <b id="growthNOut">12</b> <input id="growthN" type="range" min="5" max="20" value="12" style="vertical-align:middle;width:155px" aria-label="Maximum n in chart"></label><button class="soft" id="graphScale">Toggle Y scale</button></div>
+<p class="hint" id="graphScaleLabel"></p>
+<svg id="dynamicGraph" viewBox="0 0 760 320" role="img" aria-label="Interactive Big O operations chart with a logarithmic or linear Y axis" style="background:var(--paper);border:1px solid var(--line);border-radius:12px;width:100%;max-height:390px" xmlns="http://www.w3.org/2000/svg"></svg>
+<div id="growthValues" class="caption" style="display:flex;flex-wrap:wrap;gap:8px;margin-top:9px"></div>
+<p class="caption">Model functions: log₂(n), n, n·log₂(n), n², 2ⁿ. These are growth functions, not measured seconds.</p>
+</div>
+<h2>৩.১ <code>O(1)</code> — Constant</h2>
+<pre><code class="language-c">int x = a[2];          // valid array index access
+int y = x + 5;
+</code></pre>
+<p>স্থির সংখ্যক Operation। Array-তে ৫টি বা ১০ লাখ Element থাকলেও নির্দিষ্ট Index Access-এর Asymptotic Cost <code>Θ(1)</code>। <strong>সতর্কতা:</strong> Input-এর ওপর নির্ভর না করলেও বাস্তবে Operation Zero Time নয়।</p>
+<h2>৩.২ <code>O(log n)</code> — Logarithmic</h2>
+<pre><code class="language-c">while (n &gt; 1) {
+    n = n / 2;
+}
+</code></pre>
+<p>Input প্রতি Iteration-এ অর্ধেক: <code>16 → 8 → 4 → 2 → 1</code>। ৪টি Halving; <code>log₂16=4</code>। <code>1024 → 1</code> যেতে ১০টি Halving। <code>O(log n)</code> সাধারণত Binary Search ও Balanced Tree Search-এ পাওয়া যায়।</p>
+<figure class="diagram"><svg viewBox="0 0 760 228" role="img" aria-label="Binary-search intuition: cut the remaining candidates by half" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="70" y="40" width="108" height="52" rx="13" fill="#dbeafe" stroke="#94aec9" stroke-width="1.4"/><text x="124" y="70" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">16 items</text><line x1="182" y1="67" x2="190" y2="67" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="195" y="40" width="108" height="52" rx="13" fill="#c8e6ff" stroke="#94aec9" stroke-width="1.4"/><text x="249" y="70" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">8 items</text><line x1="307" y1="67" x2="315" y2="67" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="320" y="40" width="108" height="52" rx="13" fill="#bceee2" stroke="#94aec9" stroke-width="1.4"/><text x="374" y="70" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">4 items</text><line x1="432" y1="67" x2="440" y2="67" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="445" y="40" width="108" height="52" rx="13" fill="#ffe4bd" stroke="#94aec9" stroke-width="1.4"/><text x="499" y="70" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">2 items</text><line x1="557" y1="67" x2="565" y2="67" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="570" y="40" width="108" height="52" rx="13" fill="#f8cecb" stroke="#94aec9" stroke-width="1.4"/><text x="624" y="70" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">1 items</text><text x="380" y="150" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="29" font-weight="600" text-anchor="middle">16 → 8 → 4 → 2 → 1</text><text x="380" y="197" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="600" text-anchor="middle">4 halvings  =  log₂(16)</text></svg><figcaption>Binary-search intuition: cut the remaining candidates by half</figcaption></figure>
+<h2>৩.৩ <code>O(n)</code> — Linear</h2>
+<pre><code class="language-c">for (int i = 0; i &lt; n; i++) {
+    printf(&quot;%d &quot;, a[i]);
+}
+</code></pre>
+<p><code>n</code> Elements দেখলে <code>n</code> বার Visit করতে হয়। ৫ → ৫ iterations; ১০০ → ১০০ iterations। Loop variable fixed space ⇒ <code>O(1)</code> Auxiliary Space।</p>
+<div class="interactive" id="linearWidget"><div class="widget-head"><h3>Linear Loop: n বাড়িয়ে Count করুন</h3><p>Array-তে যত Element থাকবে, প্রতিটি Scan-এ ততটি Operation (n) হবে।</p></div><div class="controls"><label>n <input type="range" id="linearN" min="1" max="20" value="5"></label><strong id="linearOut">n = 5, iterations = 5</strong></div><div id="linearCells" class="cell-row"></div></div><h2>৩.৪ <code>O(n log n)</code> — Linearithmic</h2>
+<p>Merge Sort দুটি Half-এর Result Merge করে। Recursion depth প্রায় <code>log₂ n</code>; প্রতিটি Level-এ মোট <code>n</code> Element Process ⇒ <code>Θ(n log n)</code>। Standard Merge Sort-এর Auxiliary Array <code>Θ(n)</code> Space নেয়।</p>
+<figure class="diagram"><svg viewBox="0 0 760 252" role="img" aria-label="Merge Sort divides and then merges each level" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="260" y="15" width="240" height="40" rx="13" fill="#e2edff" stroke="#94aec9" stroke-width="1.4"/><text x="380" y="40" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">8  3  5  1  7  2  4  6</text><line x1="325" y1="56" x2="230" y2="105" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="435" y1="56" x2="530" y2="105" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="100" y="105" width="260" height="43" rx="13" fill="#d1f5e5" stroke="#94aec9" stroke-width="1.4"/><text x="230" y="132" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">8  3  5  1</text><rect x="400" y="105" width="260" height="43" rx="13" fill="#d1f5e5" stroke="#94aec9" stroke-width="1.4"/><text x="530" y="132" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">7  2  4  6</text><text x="380" y="184" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="600" text-anchor="middle">log₂ n levels × n merge work per level</text><text x="380" y="222" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="19" font-weight="600" text-anchor="middle">Time = Θ(n log n)</text></svg><figcaption>Merge Sort divides and then merges each level</figcaption></figure>
+<h2>৩.৫ <code>O(n²)</code> — Quadratic</h2>
+<pre><code class="language-c">for (int i = 0; i &lt; n; i++) {
+    for (int j = 0; j &lt; n; j++) {
+        printf(&quot;*&quot;);
+    }
+}
+</code></pre>
+<p>প্রতি Outer Iteration-এ <code>n</code>টি Inner Iteration; মোট <code>n×n = n²</code>। <code>n=4 → 16</code>, <code>n=100 → 10,000</code>। কিন্তু <strong>দুটি Nested Loop মানেই সর্বদা n² নয়</strong>; Bounds পরীক্ষা করতে হবে।</p>
+<div class="interactive" id="squareWidget"><div class="widget-head"><h3>Nested Loop Grid: n × n</h3><p>n বাড়লে Operations বর্গাকারে বাড়ে। রঙিন প্রতিটি Cell একটি Inner Operation।</p></div><div class="controls"><label>n <input type="range" id="squareN" min="2" max="9" value="4"></label><strong id="squareOut">4 × 4 = 16 operations</strong></div><div id="squareGrid" class="square-grid"></div></div><h2>৩.৬ <code>O(n³)</code> — Cubic</h2>
+<p>তিনটি স্বাধীন <code>n</code>-Iteration Loop হলে <code>n×n×n = n³</code>। উদাহরণ, Classical Triple-loop Matrix Multiplication (সমান আকারের n×n Matrix) <code>Θ(n³)</code> Arithmetic Operations।</p>
+<h2>৩.৭ <code>O(2ⁿ)</code> — Exponential</h2>
+<p>Naive Recursive Fibonacci-এর Recurrence <code>T(n)=T(n−1)+T(n−2)+Θ(1)</code>। এটি <strong>Θ(φⁿ)</strong> (φ≈1.618) Growth; <code>O(2ⁿ)</code> একটি বৈধ কিন্তু Loose Upper Bound। <code>2ⁿ</code>-এর নিখুঁত উদাহরণ হলো <code>n</code>টি Element-এর সব Subset Enumerate করা: <strong>Θ(n·2ⁿ)</strong> Output Cost হতে পারে যদি প্রতিটি Subset-এর Element-গুলোও ছাপানো হয়, এবং <strong>Θ(2ⁿ)</strong> Leaf/Subset Count।</p>
+<h2>৩.৮ <code>O(n!)</code> — Factorial</h2>
+<p><code>n</code>টি ভিন্ন Item-এর সব Permutation-এর সংখ্যা <code>n! = n×(n−1)×…×1</code>। সব Permutation-এ nটি Item লেখা হলে Output Work <code>Θ(n·n!)</code>। Permutation Count <code>Θ(n!)</code>। <code>5! = 120</code>; <code>8! = 40320</code>। Exhaustive Permutation Search-এ এটি গুরুত্বপূর্ণ।</p>
+<h2>৩.৯ তুলনা: n বাড়লে কী ঘটে?</h2>
+<table>
+<thead>
+<tr>
+  <th style="text-align:right">n</th>
+  <th style="text-align:right">log₂n</th>
+  <th style="text-align:right">n</th>
+  <th style="text-align:right">n log₂n</th>
+  <th style="text-align:right">n²</th>
+  <th style="text-align:right">n³</th>
+  <th style="text-align:right">2ⁿ</th>
+  <th style="text-align:right">n!</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">1</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">8</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">2</td>
+</tr>
+<tr>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">2</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">8</td>
+  <td style="text-align:right">16</td>
+  <td style="text-align:right">64</td>
+  <td style="text-align:right">16</td>
+  <td style="text-align:right">24</td>
+</tr>
+<tr>
+  <td style="text-align:right">8</td>
+  <td style="text-align:right">3</td>
+  <td style="text-align:right">8</td>
+  <td style="text-align:right">24</td>
+  <td style="text-align:right">64</td>
+  <td style="text-align:right">512</td>
+  <td style="text-align:right">256</td>
+  <td style="text-align:right">40,320</td>
+</tr>
+<tr>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">3.32</td>
+  <td style="text-align:right">10</td>
+  <td style="text-align:right">33.22</td>
+  <td style="text-align:right">100</td>
+  <td style="text-align:right">1,000</td>
+  <td style="text-align:right">1,024</td>
+  <td style="text-align:right">3,628,800</td>
+</tr>
+<tr>
+  <td style="text-align:right">16</td>
+  <td style="text-align:right">4</td>
+  <td style="text-align:right">16</td>
+  <td style="text-align:right">64</td>
+  <td style="text-align:right">256</td>
+  <td style="text-align:right">4,096</td>
+  <td style="text-align:right">65,536</td>
+  <td style="text-align:right">20,922,789,888,000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Typical growth ordering</strong> (large n, positive constants ignored): <code>1 &lt; log n &lt; n &lt; n log n &lt; n² &lt; n³ &lt; 2ⁿ &lt; n!</code>। এই Ordering <strong>Asymptotic</strong>; ছোট n-এ মানের ক্রম ভিন্ন হতে পারে।</p>
+</section>
+<section class="chapter" id="chapter-4"><h1>৪. Code Analysis: Statement, Loop, Recursion</h1>
+<blockquote>
+<p><strong>Learning outcome:</strong> নতুন Code দেখে নিজের হাতে Count বের করবেন। প্রতিটি উদাহরণে Time ও Extra Space আলাদা ভাববেন।</p>
+</blockquote>
+<h2>৪.১ Simple Statements ও Conditionals</h2>
+<pre><code class="language-c">int a = 10;                  // Θ(1)
+int b = a * 4 + 2;           // Θ(1)
+if (x &gt; 0)                  // constant-time comparison
+    printf(&quot;positive&quot;);
+else
+    printf(&quot;non-positive&quot;);
+</code></pre>
+<p>স্থির সংখ্যক Primitive Operation ⇒ <code>Θ(1)</code> Time, <code>Θ(1)</code> Extra Space। <code>if</code>-এর Branch-এর Cost আলাদা হলে <strong>Worst Case</strong> সর্বাধিক Branch Cost; <strong>Best Case</strong> সবচেয়ে কম Branch Cost (condition evaluation-সহ)।</p>
+<pre><code class="language-c">if (flag) {
+    for (int i = 0; i &lt; n; i++) work(); // Θ(n)
+} else {
+    work();                              // Θ(1)
+}
+</code></pre>
+<p>Best <code>Θ(1)</code>; Worst <code>Θ(n)</code> (ধরা হচ্ছে work() constant-time)। <strong>Branch-এর Cost যোগ করবেন না</strong>, একবারে একটি Branch চলে।</p>
+<h2>৪.২ Consecutive Loops: Add</h2>
+<pre><code class="language-cpp">for (int i = 0; i &lt; n; ++i) std::cout &lt;&lt; i;
+for (int j = 0; j &lt; n; ++j) std::cout &lt;&lt; j;
+</code></pre>
+<p><code>n + n = 2n</code> ⇒ <code>Θ(n)</code> Time। যদি প্রথম Loop n², দ্বিতীয় Loop n হয়, <code>n²+n</code> ⇒ <code>Θ(n²)</code>।</p>
+<h2>৪.৩ Nested Loops: Multiply — তবে Bounds দেখুন</h2>
+<pre><code class="language-java">for (int i=0; i&lt;n; i++) {
+    for (int j=0; j&lt;n; j++) {
+        System.out.print(&quot;*&quot;);
+    }
+}
+</code></pre>
+<p><code>n × n = n²</code> ⇒ <code>Θ(n²)</code>; কিন্তু <code>j&lt;n</code>-এর বদলে <code>j&lt;m</code> হলে <code>Θ(nm)</code>।</p>
+<h2>৪.৪ Triangular Loop</h2>
+<pre><code class="language-c">for (int i = 0; i &lt; n; i++) {
+    for (int j = 0; j &lt; i; j++) {
+        count++;
+    }
+}
+</code></pre>
+<p>Inner Iterations = <code>0+1+2+…+(n−1) = n(n−1)/2</code> ⇒ <code>Θ(n²)</code>। এটি Bubble/Selection Sort-এর Comparison Count বুঝতে সাহায্য করে।</p>
+<figure class="diagram"><svg viewBox="0 0 760 255" role="img" aria-label="Triangular loop: 0+1+...+(n−1) = n(n−1)/2" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="160" y="78" width="37" height="32" rx="13" fill="#cce7dd" stroke="#94aec9" stroke-width="1.4"/><rect x="160" y="122" width="37" height="32" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><rect x="206" y="122" width="37" height="32" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><rect x="160" y="166" width="37" height="32" rx="13" fill="#cce7dd" stroke="#94aec9" stroke-width="1.4"/><rect x="206" y="166" width="37" height="32" rx="13" fill="#cce7dd" stroke="#94aec9" stroke-width="1.4"/><rect x="252" y="166" width="37" height="32" rx="13" fill="#cce7dd" stroke="#94aec9" stroke-width="1.4"/><rect x="160" y="210" width="37" height="32" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><rect x="206" y="210" width="37" height="32" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><rect x="252" y="210" width="37" height="32" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><rect x="298" y="210" width="37" height="32" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><text x="535" y="75" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="22" font-weight="600" text-anchor="middle">n = 5</text><text x="535" y="115" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="600" text-anchor="middle">0 + 1 + 2 + 3 + 4</text><text x="535" y="157" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="21" font-weight="600" text-anchor="middle">= 10 operations</text><text x="535" y="205" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="600" text-anchor="middle">n(n−1)/2</text></svg><figcaption>Triangular loop: 0+1+...+(n−1) = n(n−1)/2</figcaption></figure>
+<h2>৪.৫ Independent Growth এবং Unusual Loops</h2>
+<pre><code class="language-c">for (int i=1; i&lt;n; i*=2) work();   // Θ(log n)
+for (int i=n; i&gt;0; i/=3) work();   // Θ(log n)
+for (int i=1; i*i&lt;=n; i++) work(); // Θ(√n) (safe arithmetic assumed)
+</code></pre>
+<pre><code class="language-c">for (int i=0; i&lt;n; i++) {
+    for (int j=1; j&lt;n; j*=2) work();
+}
+</code></pre>
+<p>Outer <code>Θ(n)</code>, Inner <code>Θ(log n)</code> ⇒ <code>Θ(n log n)</code>। আবার <code>for(i=1; i&lt;n; i+=i)</code> অর্থাৎ <code>i</code> দ্বিগুণ ⇒ <code>Θ(log n)</code>; কিন্তু <code>i=0</code> থেকে <code>i+=i</code> শুরু করলে <strong>Infinite Loop</strong> হতে পারে।</p>
+<h2>৪.৬ Two-Pointer Loop: Nested হলেও O(n)</h2>
+<pre><code class="language-cpp">int j = 0;
+for (int i = 0; i &lt; n; ++i) {
+    while (j &lt; n &amp;&amp; a[j] &lt; a[i]) {
+        ++j;
+    }
+}
+</code></pre>
+<p><code>j</code> কখনো Reset হয় না এবং সর্বোচ্চ <code>n</code> বার বাড়ে। Outer Loop n বার, Inner <code>while</code>-এর সব Iteration মিলিয়েও সর্বোচ্চ n ⇒ মোট <code>Θ(n)</code> (condition checks-সহ)। <strong>Shortcut:</strong> Loop-এর বডি কতবার <strong>সর্বমোট</strong> চলে, সেটি গণনা করুন।</p>
+<h2>৪.৭ Recursion ও Recurrence Relation</h2>
+<p>Recursion-এ Function নিজেকেই Call করে। <strong>Base Case</strong> না থাকলে থামবে না। Time Complexity বের করতে প্রতিটি Call কত কাজ করে এবং কয়টি Sub-call হয় তা দেখতে হয়। Space Complexity নির্ভর করে <strong>Maximum Active Call-Stack Depth</strong>-এর ওপর।</p>
+<pre><code class="language-c">void countdown(int n) {
+    if (n &lt;= 0) return;
+    printf(&quot;%d &quot;, n);
+    countdown(n-1);
+}
+</code></pre>
+<p><code>T(n)=T(n−1)+Θ(1)</code> ⇒ <code>Θ(n)</code> Time। একসঙ্গে n+1টি Call Frame ⇒ <code>Θ(n)</code> Stack Space।</p>
+<figure class="diagram"><svg viewBox="0 0 760 280" role="img" aria-label="Recursive call stack at the deepest point: f(4) → f(0)" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="265" y="25" width="232" height="42" rx="13" fill="#dceaff" stroke="#94aec9" stroke-width="1.4"/><text x="381" y="52" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">f(4)  active frame</text><rect x="265" y="73" width="232" height="42" rx="13" fill="#cdeafe" stroke="#94aec9" stroke-width="1.4"/><text x="381" y="100" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">f(3)  active frame</text><rect x="265" y="121" width="232" height="42" rx="13" fill="#b6e2f0" stroke="#94aec9" stroke-width="1.4"/><text x="381" y="148" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">f(2)  active frame</text><rect x="265" y="169" width="232" height="42" rx="13" fill="#a4e2d6" stroke="#94aec9" stroke-width="1.4"/><text x="381" y="196" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">f(1)  active frame</text><rect x="265" y="217" width="232" height="42" rx="13" fill="#fce3b8" stroke="#94aec9" stroke-width="1.4"/><text x="381" y="244" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">f(0)  active frame</text></svg><figcaption>Recursive call stack at the deepest point: f(4) → f(0)</figcaption></figure>
+<h2>৪.৮ Recurrence-এর আরও উদাহরণ</h2>
+<table>
+<thead>
+<tr>
+  <th>Recurrence</th>
+  <th>সমাধান</th>
+  <th>কোথায় দেখা যায়</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>T(n)=T(n−1)+1</code></td>
+  <td><code>Θ(n)</code></td>
+  <td>Countdown</td>
+</tr>
+<tr>
+  <td><code>T(n)=T(n/2)+1</code></td>
+  <td><code>Θ(log n)</code></td>
+  <td>Binary Search</td>
+</tr>
+<tr>
+  <td><code>T(n)=2T(n/2)+n</code></td>
+  <td><code>Θ(n log n)</code></td>
+  <td>Merge Sort</td>
+</tr>
+<tr>
+  <td><code>T(n)=2T(n/2)+1</code></td>
+  <td><code>Θ(n)</code></td>
+  <td>Full binary divide tree</td>
+</tr>
+<tr>
+  <td><code>T(n)=T(n−1)+n</code></td>
+  <td><code>Θ(n²)</code></td>
+  <td>Growing repeated work</td>
+</tr>
+<tr>
+  <td><code>T(n)=T(n−1)+T(n−2)+1</code></td>
+  <td><code>Θ(φⁿ)</code></td>
+  <td>Naive Fibonacci</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Master Theorem (intro):</strong> <code>T(n)=aT(n/b)+f(n)</code>-এ <code>a≥1</code>, <code>b&gt;1</code> এবং যথাযথ Regularity Conditions পূরণ হলে <code>n^(log_b a)</code>-এর সঙ্গে <code>f(n)</code> তুলনা করে Bound পাওয়া যায়। সব Recurrence-এ Master Theorem প্রযোজ্য নয়।</p>
+<h2>৪.৯ Common Mistakes / ভুলগুলো এড়িয়ে চলুন</h2>
+<ol>
+<li><code>Big O = always worst case</code> — ভুল; Upper Bound ও Case Analysis আলাদা।</li>
+<li>Consecutive Loop-এ Multiply করা — ভুল; Consecutive হলে <strong>Add</strong>, nested হলে সাধারণত <strong>Multiply</strong>, তবে shared pointers ও nonuniform bounds আলাদা।</li>
+<li>Nested Loop দেখেই <code>O(n²)</code> বলা — ভুল; Inner Iterations যোগ করুন।</li>
+<li><code>O(n+m)</code>-কে <code>O(n)</code> ধরা — যদি m independent হয়, ভুল।</li>
+<li>Log-এর Base নিয়ে অতিরিক্ত চিন্তা — Fixed-base Logs শুধু Constant Factor-এ আলাদা।</li>
+<li><code>T(n)=Θ(n²)</code> থেকে বাস্তব সময় 'নিশ্চয়ই n² সেকেন্ড' বলা — ভুল।</li>
+<li>Recursive Algorithm-এ Call Stack বাদ দেওয়া — ভুল।</li>
+<li>Binary Search Unsorted Data-তে চালানো — Standard Binary Search-এর Precondition লঙ্ঘন।</li>
+<li>Mutable String Concatenation ও Immutable String Concatenation-কে একই Cost ধরা — ভুল; Representation গুরুত্বপূর্ণ।</li>
+<li>Algorithm-এর Print/Output Work উপেক্ষা — Output Size নিজেই Lower Bound তৈরি করতে পারে।</li>
+</ol>
+<p>&lt;details&gt;&lt;summary&gt;পরীক্ষার ৫ ধাপের Decision Method&lt;/summary&gt;
+(১) Input size ও একাধিক dimension চিহ্নিত করুন। (২) Basic Operations-এর সংখ্যা Count করুন। (৩) Conditional হলে Case পৃথক করুন। (৪) Loops/Recurrence সমাধান করুন। (৫) Leading Term রেখে Bound লিখুন এবং Memory আলাদাভাবে গণনা করুন।
+&lt;/details&gt;</p>
+</section>
+<section class="chapter" id="chapter-5"><h1>৫. Space Complexity: Input, Auxiliary, Stack, Trade-off</h1>
+<blockquote>
+<p><strong>Learning outcome:</strong> অতিরিক্ত Memory, Call Stack, In-place এবং Time–Space Trade-off সম্পর্কে সঠিক ধারণা অর্জন করবেন।</p>
+</blockquote>
+<h2>৫.১ Input Space বনাম Auxiliary Space</h2>
+<p><strong>English exam definitions:</strong> <em>Input space is the storage occupied by the input. Auxiliary space is the additional working memory used by the algorithm, excluding its input.</em></p>
+<pre><code class="language-c">int sum_array(const int a[], int n) {
+    int sum = 0;
+    for (int i=0; i&lt;n; ++i) sum += a[i];
+    return sum;
+}
+</code></pre>
+<ul>
+<li>Input Array storage = <code>Θ(n)</code> (ধরা হচ্ছে integer-এর Size Fixed)।</li>
+<li><code>sum</code>, <code>i</code>, <code>n</code>-এর মতো কয়েকটি Scalar = <code>Θ(1)</code> <strong>Auxiliary Space</strong>।</li>
+<li>Array-সহ <strong>Total Space</strong> = <code>Θ(n)</code>।</li>
+</ul>
+<h2>৫.২ Variable Memory: Copy Array</h2>
+<pre><code class="language-c">int *b = malloc(n * sizeof(int)); // ধারণাগত O(n) allocation
+for (int i=0; i&lt;n; ++i) b[i] = a[i];
+free(b);
+</code></pre>
+<p>আরেকটি <code>n</code> Element-এর Array ⇒ <code>Θ(n)</code> Auxiliary Space; Copy Loop ⇒ <code>Θ(n)</code> Time। <code>malloc</code> ব্যর্থ হলে Check করতে হয়—উপরের Code শুধুমাত্র Complexity প্রদর্শনের জন্য।</p>
+<figure class="diagram"><svg viewBox="0 0 760 225" role="img" aria-label="Input Space Θ(n) versus Auxiliary Space Θ(1)" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><text x="176" y="35" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="19" font-weight="600" text-anchor="middle">Input Array (n = 6)</text><rect x="55" y="65" width="43" height="50" rx="13" fill="#d7eaff" stroke="#94aec9" stroke-width="1.4"/><text x="76" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">1</text><rect x="106" y="65" width="43" height="50" rx="13" fill="#d7eaff" stroke="#94aec9" stroke-width="1.4"/><text x="127" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">2</text><rect x="157" y="65" width="43" height="50" rx="13" fill="#d7eaff" stroke="#94aec9" stroke-width="1.4"/><text x="178" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">3</text><rect x="208" y="65" width="43" height="50" rx="13" fill="#d7eaff" stroke="#94aec9" stroke-width="1.4"/><text x="229" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">4</text><rect x="259" y="65" width="43" height="50" rx="13" fill="#d7eaff" stroke="#94aec9" stroke-width="1.4"/><text x="280" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">5</text><rect x="310" y="65" width="43" height="50" rx="13" fill="#d7eaff" stroke="#94aec9" stroke-width="1.4"/><text x="331" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">6</text><text x="575" y="35" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="19" font-weight="600" text-anchor="middle">Auxiliary Scalars</text><rect x="480" y="65" width="88" height="50" rx="13" fill="#d3f5de" stroke="#94aec9" stroke-width="1.4"/><text x="524" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">sum</text><rect x="579" y="65" width="88" height="50" rx="13" fill="#d3f5de" stroke="#94aec9" stroke-width="1.4"/><text x="623" y="95" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">i</text><text x="380" y="188" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">Input storage grows with n; extra counters stay constant</text></svg><figcaption>Input Space Θ(n) versus Auxiliary Space Θ(1)</figcaption></figure>
+<h2>৫.৩ Arrays, Strings, Stack, Queue</h2>
+<table>
+<thead>
+<tr>
+  <th>Data / Operation</th>
+  <th>Typical Time</th>
+  <th>Extra Space / মন্তব্য</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Fixed Array Index Access</td>
+  <td><code>Θ(1)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Copy n-length Array</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(n)</code> for new copy</td>
+</tr>
+<tr>
+  <td>Mutable String Character Access</td>
+  <td><code>Θ(1)</code> when random-access representation</td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>String Scan / Length Calculation</td>
+  <td><code>Θ(n)</code> if scanning</td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Stack Push/Pop</td>
+  <td><code>O(1)</code> typical</td>
+  <td>stored stack items take <code>Θ(k)</code></td>
+</tr>
+<tr>
+  <td>Queue Enqueue/Dequeue</td>
+  <td><code>O(1)</code> typical</td>
+  <td>queue contents take <code>Θ(k)</code></td>
+</tr>
+<tr>
+  <td>Hash Table Lookup</td>
+  <td><code>O(1)</code> average, <code>O(n)</code> worst possible</td>
+  <td>Table may use <code>Θ(n)</code> storage</td>
+</tr>
+</tbody>
+</table>
+<p><strong>সতর্কতা:</strong> কোনো ভাষায় String Length cached থাকতে পারে (<code>O(1)</code>); অন্য Implementation-এ Scan করতে হতে পারে (<code>O(n)</code>)। Dynamic Array Append সাধারণত <strong>Amortized O(1)</strong>, একক Resize Operation <code>O(n)</code> হতে পারে।</p>
+<h2>৫.৪ Recursion Stack Visual</h2>
+<pre><code class="language-c">void f(int n) {
+    if (n == 0) return;
+    f(n - 1);
+}
+</code></pre>
+<p><code>f(4) → f(3) → f(2) → f(1) → f(0)</code>। Base Case-এ পৌঁছানোর মুহূর্তে সর্বাধিক ৫টি Stack Frame। n-এর সঙ্গে Frame Number লিনিয়ার ⇒ <code>Θ(n)</code> Stack Space। Tail-call Optimization <strong>নিশ্চিত নয়</strong>, তাই সাধারণ পরীক্ষার বিশ্লেষণে সেটি ধরে নেবেন না।</p>
+<h2>৫.৫ Balanced vs Skewed Tree, Height ও Width</h2>
+<figure class="diagram"><svg viewBox="0 0 760 280" role="img" aria-label="Tree height determines recursive DFS stack depth" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><line x1="175" y1="62" x2="105" y2="112" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="175" y1="62" x2="245" y2="112" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="105" y1="132" x2="60" y2="181" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="105" y1="132" x2="150" y2="181" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="245" y1="132" x2="200" y2="181" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="245" y1="132" x2="290" y2="181" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="552" y1="65" x2="596" y2="111" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="596" y1="130" x2="637" y2="178" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><circle cx="175" cy="60" r="19" fill="#2067ae"/><text x="175" y="66" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">A</text><circle cx="105" cy="130" r="19" fill="#168a76"/><text x="105" y="136" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">B</text><circle cx="245" cy="130" r="19" fill="#168a76"/><text x="245" y="136" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">C</text><circle cx="60" cy="194" r="19" fill="#7b56bb"/><text x="60" y="200" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">D</text><circle cx="150" cy="194" r="19" fill="#7b56bb"/><text x="150" y="200" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">E</text><circle cx="200" cy="194" r="19" fill="#7b56bb"/><text x="200" y="200" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F</text><circle cx="290" cy="194" r="19" fill="#7b56bb"/><text x="290" y="200" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">G</text><circle cx="552" cy="60" r="19" fill="#2067ae"/><text x="552" y="66" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">A</text><circle cx="596" cy="128" r="19" fill="#168a76"/><text x="596" y="134" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">B</text><circle cx="637" cy="194" r="19" fill="#7b56bb"/><text x="637" y="200" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">C</text><text x="178" y="250" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">Balanced: h = Θ(log n)</text><text x="595" y="250" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">Skewed: h = Θ(n)</text></svg><figcaption>Tree height determines recursive DFS stack depth</figcaption></figure>
+<p>Recursive DFS (Preorder/Inorder/Postorder): <strong>Time <code>Θ(n)</code>, auxiliary stack <code>O(h)</code></strong> যেখানে <code>h</code> Tree Height (edge count হলে asymptotically frame count <code>h+1</code>)। Balanced Tree-তে <code>h=Θ(log n)</code>; skewed Tree-তে <code>h=Θ(n)</code>।</p>
+<p>Level-order BFS: Queue-এর Space <code>O(w)</code>, যেখানে <code>w</code> Maximum Number of Nodes at One Level। একটি Balanced Complete Tree-এর শেষ Level বড় ⇒ <code>w=Θ(n)</code> হতে পারে। Skewed Tree-তে <code>w=1</code>, Queue Space <code>Θ(1)</code>। সর্বক্ষেত্রে Node Visit <code>Θ(n)</code> Time।</p>
+<h2>৫.৬ Iterative বনাম Recursive</h2>
+<p><strong>Binary Search:</strong> Iterative Version: <code>Θ(log n)</code> Time, <code>Θ(1)</code> Extra Space। Recursive Version: <code>Θ(log n)</code> Time, <code>Θ(log n)</code> Stack Space (Tail-call Optimization না ধরে)। উভয় Algorithm-ই Sorted Array-তে সঠিক।</p>
+<p><strong>Tree DFS:</strong> Recursive Version Height অনুযায়ী Stack; Explicit Stack-ভিত্তিক Iterative DFS-এও Worst Case <code>O(h)</code> বা <code>O(n)</code> Storage পরিস্থিতি/Implementation অনুযায়ী হতে পারে।</p>
+<h2>৫.৭ In-place Algorithm</h2>
+<p><em>An in-place algorithm uses only a constant amount of auxiliary memory</em>—এটি প্রচলিত ধারণা (কিছু Context-এ <code>O(log n)</code> Stack-সহ “in-place” বলা হয়; নির্দিষ্ট Definition স্পষ্ট রাখা ভালো)। Bubble Sort ও Selection Sort <code>Θ(1)</code> Auxiliary Space-এ Element Swap করতে পারে; Standard Merge Sort সাধারণত <code>Θ(n)</code> Extra Array ব্যবহার করে।</p>
+<h2>৫.৮ Time–Space Trade-off</h2>
+<ul>
+<li>Hash Table-এ অতিরিক্ত Memory ব্যবহার করলে Search <strong>Average <code>O(1)</code></strong>, কিন্তু Collision ও Resize-এর বিবেচনা আছে।</li>
+<li>Cached/Memoized Fibonacci অতিরিক্ত <code>O(n)</code> Memo Memory ব্যবহার করে <code>O(n)</code> Time অর্জন করতে পারে; Naive Recursive Version Exponential।</li>
+<li>Array Copy করলে Original Data অক্ষত থাকে, তবে <code>O(n)</code> অতিরিক্ত Storage লাগে।</li>
+</ul>
+<p><strong>Exam Tip:</strong> সবসময় দুটি আলাদা Line লিখুন: <code>Time = ...</code> এবং <code>Auxiliary Space = ...</code>।</p>
+</section>
+<section class="chapter" id="chapter-6"><h1>৬. Important Algorithms: Search, Sort, Fibonacci, Array &amp; String</h1>
+<blockquote>
+<p><strong>Learning outcome:</strong> Algorithm কীভাবে কাজ করে, Complexity কেন হয়, কোন Case ভিন্ন তা বিশ্লেষণ করতে পারবেন।</p>
+</blockquote>
+<h2>৬.১ Linear Search</h2>
+<p><strong>Idea:</strong> প্রথম Element থেকে একটির পর একটি Target Compare করা।</p>
+<pre><code class="language-c">int linearSearch(const int a[], int n, int x) {
+    for (int i=0; i&lt;n; ++i)
+        if (a[i] == x) return i;
+    return -1;
+}
+</code></pre>
+<ul>
+<li>Best Time <code>Θ(1)</code> (প্রথম Element)।</li>
+<li>Average Time <code>Θ(n)</code> (সমান সম্ভাবনায় Target Position ধরলে)।</li>
+<li>Worst Time <code>Θ(n)</code> (শেষে/অনুপস্থিত)।</li>
+<li>Auxiliary Space <code>Θ(1)</code>।</li>
+</ul>
+<h2>৬.২ Binary Search — Sorted Array আবশ্যক</h2>
+<div class="interactive" id="binaryWidget"><div class="widget-head"><h3>Interactive Binary Search</h3><p>Sorted array-তে Target খুঁজুন — Next চাপলে Middle/Range পরিবর্তন দেখুন।</p></div><div class="controls"><label>Target <select id="bsTarget"><option>23</option><option>7</option><option>45</option><option>99</option><option>2</option></select></label><button id="bsNext">Next step →</button><button class="soft" id="bsReset">Reset</button></div><div id="bsArray" class="cell-row" aria-live="polite"></div><p id="bsStatus" class="status"></p><div id="bsLog" class="small-list"></div></div>
+<figure class="diagram"><svg viewBox="0 0 760 300" role="img" aria-label="Binary Search flowchart: compare middle, discard half, repeat until found / empty range" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><rect x="25" y="35" width="145" height="65" rx="13" fill="#e4efff" stroke="#94aec9" stroke-width="1.4"/><text x="97" y="62" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">Set lo, hi</text><text x="97" y="83" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">Sorted input</text><line x1="170" y1="68" x2="203" y2="68" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="205" y="35" width="145" height="65" rx="13" fill="#e1f6ea" stroke="#94aec9" stroke-width="1.4"/><text x="277" y="65" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="17" font-weight="600" text-anchor="middle">lo ≤ hi ?</text><line x1="350" y1="68" x2="381" y2="68" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="385" y="35" width="155" height="65" rx="13" fill="#fff0d9" stroke="#94aec9" stroke-width="1.4"/><text x="462" y="62" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">Read a[mid]</text><text x="462" y="83" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">compare target</text><line x1="540" y1="68" x2="565" y2="68" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><rect x="569" y="35" width="166" height="65" rx="13" fill="#e1f6ea" stroke="#94aec9" stroke-width="1.4"/><text x="652" y="64" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Equal? → Found</text><text x="652" y="83" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="12" font-weight="600" text-anchor="middle">Else: select half</text><rect x="202" y="175" width="174" height="60" rx="13" fill="#ffe9e8" stroke="#94aec9" stroke-width="1.4"/><text x="289" y="200" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="16" font-weight="600" text-anchor="middle">No: Not found</text><text x="289" y="220" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="13" font-weight="600" text-anchor="middle">lo &gt; hi</text><rect x="550" y="175" width="190" height="60" rx="13" fill="#e5efff" stroke="#94aec9" stroke-width="1.4"/><text x="645" y="201" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">lo=mid+1 OR</text><text x="645" y="220" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">hi=mid−1</text><line x1="277" y1="100" x2="277" y2="173" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="651" y1="100" x2="651" y2="173" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><path d="M551,206 C475,270 286,275 278,105" fill="none" stroke="#47617a" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arr)"/></svg><figcaption>Binary Search flowchart: compare middle, discard half, repeat until found / empty range</figcaption></figure>
+<pre><code class="language-cpp">int binarySearch(const vector&lt;int&gt;&amp; a, int target) {
+    int lo = 0, hi = (int)a.size()-1;
+    while (lo &lt;= hi) {
+        int mid = lo + (hi-lo)/2;
+        if (a[mid] == target) return mid;
+        if (a[mid] &lt; target) lo = mid + 1;
+        else hi = mid - 1;
+    }
+    return -1;
+}
+</code></pre>
+<p>প্রতি Step-এ অপ্রয়োজনীয় অর্ধেক বাদ। Best <code>Θ(1)</code>, Worst <code>Θ(log n)</code>, Iterative Auxiliary <code>Θ(1)</code>। Recursive Binary Search-এর Stack <code>Θ(log n)</code> Worst Case। <code>mid = lo+(hi-lo)/2</code> লেখা Overflow Risk কমায়।</p>
+<h2>৬.৩ Bubble Sort</h2>
+<p><strong>Idea:</strong> পাশাপাশি দুটি Element Compare করে ভুল ক্রম হলে Swap করা; প্রতি Pass-এ বড় Element শেষের দিকে ওঠে। <strong>Early-exit Flag</strong> দিলে ইতিমধ্যে Sorted Input-এর Best Time <code>Θ(n)</code>।</p>
+<pre><code class="language-c">void bubbleSort(int a[], int n) {
+    for (int i=0; i&lt;n-1; ++i) {
+        int swapped = 0;
+        for (int j=0; j&lt;n-i-1; ++j) {
+            if (a[j] &gt; a[j+1]) {
+                int t=a[j]; a[j]=a[j+1]; a[j+1]=t;
+                swapped=1;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+</code></pre>
+<p>Best <code>Θ(n)</code> (optimized), Average/Worst <code>Θ(n²)</code>; Auxiliary <code>Θ(1)</code>; <strong>Stable</strong>।</p>
+<h2>৬.৪ Selection Sort</h2>
+<p><strong>Idea:</strong> বাকি Unsorted অংশ থেকে Minimum বের করে বর্তমান Position-এ Swap করা। প্রায় প্রতিটি Case-এ Comparisons = <code>n(n−1)/2</code>।</p>
+<pre><code class="language-text">FOR i=0..n-2:
+    minIndex = i
+    FOR j=i+1..n-1:
+        IF A[j] &lt; A[minIndex]: minIndex = j
+    SWAP A[i], A[minIndex]
+</code></pre>
+<p>Best/Average/Worst <code>Θ(n²)</code> Time, Auxiliary <code>Θ(1)</code>; Conventional Swapping Selection Sort সাধারণত <strong>Unstable</strong>।</p>
+<h2>৬.৫ Insertion Sort</h2>
+<p><strong>Idea:</strong> প্রতিটি নতুন Element-কে ইতিমধ্যে Sorted Left Portion-এর সঠিক অবস্থানে Insert করা।</p>
+<pre><code class="language-java">for (int i=1; i&lt;a.length; i++) {
+    int key = a[i];
+    int j = i-1;
+    while (j&gt;=0 &amp;&amp; a[j]&gt;key) {
+        a[j+1] = a[j];
+        --j;
+    }
+    a[j+1] = key;
+}
+</code></pre>
+<p>Sorted Input Best <code>Θ(n)</code>, Average/Worst <code>Θ(n²)</code>; Auxiliary <code>Θ(1)</code>; <strong>Stable</strong>। Small/Nearly-sorted Input-এ কার্যকর।</p>
+<div class="interactive" id="sortWidget"><div class="widget-head"><h3>Sorting Animation — Bubble / Selection / Insertion</h3><p>প্রতি Comparison/Swap বা Placement দেখুন; Step, Play ও Pause ব্যবহার করুন।</p></div><div class="controls"><label>Algorithm <select id="sortAlgo"><option value="bubble">Bubble Sort</option><option value="selection">Selection Sort</option><option value="insertion">Insertion Sort</option></select></label><label>Speed <select id="sortSpeed"><option value="950">Slow</option><option value="500" selected>Normal</option><option value="180">Fast</option></select></label><button id="sortNext">Step →</button><button id="sortPlay">▶ Play</button><button class="soft" id="sortPause">Pause</button><button class="soft" id="sortReset">Reset</button></div><div id="sortBars" class="bars" aria-live="polite"></div><p id="sortStatus" class="status"></p><p id="sortCounter" class="caption"></p></div>
+<h2>৬.৬ Merge Sort</h2>
+<pre><code class="language-text">MERGE_SORT(A)
+    IF len(A) &lt;= 1: RETURN A
+    Split A into Left, Right
+    RETURN MERGE(MERGE_SORT(Left), MERGE_SORT(Right))
+</code></pre>
+<p><code>T(n)=2T(n/2)+Θ(n)</code> ⇒ Best/Average/Worst <strong>Θ(n log n)</strong>; Conventional Array Version Auxiliary <strong>Θ(n)</strong>, Stack <code>Θ(log n)</code> (buffer space dominates); <strong>Stable</strong> with correct merge tie handling।</p>
+<h2>৬.৭ Quick Sort</h2>
+<p><strong>Idea:</strong> Pivot দিয়ে Array-কে Partition; Left-এর ছোট Values এবং Right-এর বড় Values (scheme-dependent), দুই ভাগে Recursion।</p>
+<pre><code class="language-text">QUICKSORT(A, lo, hi)
+    IF lo &gt;= hi: RETURN
+    p = PARTITION(A, lo, hi)
+    QUICKSORT(A, lo, p-1)
+    QUICKSORT(A, p+1, hi)
+</code></pre>
+<p>Balanced Partitions ⇒ <code>Θ(n log n)</code>; Highly Unbalanced Partitions ⇒ <code>Θ(n²)</code> Worst। Typical randomized-pivot Quick Sort-এর <strong>Expected <code>Θ(n log n)</code></strong> Time; In-place Partition সহ Recursive Stack <strong>Expected <code>O(log n)</code></strong>, Naive Worst <code>O(n)</code>। Conventional Quick Sort <strong>Unstable</strong>।</p>
+<h2>৬.৮ Fibonacci: Naive Recursive vs Iterative vs Memoization</h2>
+<pre><code class="language-c">int fibRecursive(int n) {
+    if (n &lt;= 1) return n;
+    return fibRecursive(n-1) + fibRecursive(n-2);
+}
+</code></pre>
+<p><strong>Naive Recursive</strong>: Time <code>Θ(φⁿ)</code> (often upper-bounded by <code>O(2ⁿ)</code>); Stack <code>Θ(n)</code>। Repeated Calls অনেক বেশি।</p>
+<figure class="diagram"><svg viewBox="0 0 760 270" role="img" aria-label="Partial recursive Fibonacci call tree (F(4)); subtrees omitted for brevity" xmlns="http://www.w3.org/2000/svg"><defs><marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L9,3 L0,6" fill="none" stroke="#47617a" stroke-width="1.5"/></marker></defs><line x1="380" y1="49" x2="215" y2="107" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="380" y1="49" x2="565" y2="107" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="215" y1="119" x2="135" y2="180" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="215" y1="119" x2="305" y2="180" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="565" y1="119" x2="495" y2="180" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><line x1="565" y1="119" x2="645" y2="180" stroke="#47617a" stroke-width="2" marker-end="url(#arr)"/><circle cx="380" cy="44" r="26" fill="#205ea7"/><text x="380" y="50" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(4)</text><circle cx="215" cy="115" r="26" fill="#1a8f78"/><text x="215" y="121" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(3)</text><circle cx="565" cy="115" r="26" fill="#1a8f78"/><text x="565" y="121" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(2)</text><circle cx="135" cy="193" r="26" fill="#7860b9"/><text x="135" y="199" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(2)</text><circle cx="305" cy="193" r="26" fill="#7860b9"/><text x="305" y="199" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(1)</text><circle cx="495" cy="193" r="26" fill="#7860b9"/><text x="495" y="199" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(1)</text><circle cx="645" cy="193" r="26" fill="#7860b9"/><text x="645" y="199" fill="white" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="18" font-weight="700" text-anchor="middle">F(0)</text><text x="380" y="250" fill="#193b5f" font-family="Arial,Noto Sans Bengali,sans-serif" font-size="15" font-weight="600" text-anchor="middle">Repeated subproblems: F(2) and F(1) are recomputed</text></svg><figcaption>Partial recursive Fibonacci call tree (F(4)); subtrees omitted for brevity</figcaption></figure>
+<pre><code class="language-c">long long fibIterative(int n) {
+    if (n &lt;= 1) return n;
+    long long a=0, b=1;
+    for (int i=2; i&lt;=n; ++i) {
+        long long next=a+b;
+        a=b; b=next;
+    }
+    return b;
+}
+</code></pre>
+<p><strong>Iterative</strong>: Time <code>Θ(n)</code>, Extra Space <code>Θ(1)</code> (fixed-width integer ও arithmetic Cost O(1) ধরে; বড় n-এ Overflow হতে পারে)। Memoization: Time <code>Θ(n)</code>, Memo Storage <code>Θ(n)</code>, Recursive Stack <code>Θ(n)</code>।</p>
+<div class="interactive" id="recWidget"><div class="widget-head"><h3>Factorial Recursion — Stack Visualizer</h3><p>`factorial(n) = n × factorial(n−1)`, base case `factorial(1)=1`। Call → Return পর্যায় দেখুন।</p></div><div class="controls"><label>n <select id="recN"><option>3</option><option selected>4</option><option>5</option><option>6</option></select></label><button id="recNext">Next step →</button><button class="soft" id="recReset">Reset</button></div><div id="recStack" class="stack-grid" aria-live="polite"></div><p id="recStatus" class="status"></p></div>
+<h2>৬.৯ Array &amp; String Operations</h2>
+<table>
+<thead>
+<tr>
+  <th>Operation</th>
+  <th>Typical Time</th>
+  <th>Auxiliary Space</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Array Index Access</td>
+  <td><code>Θ(1)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Array Traversal</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Unsorted Array Linear Search</td>
+  <td>Best <code>Θ(1)</code>, Worst <code>Θ(n)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Insert at Front of Contiguous Array</td>
+  <td><code>Θ(n)</code> shift</td>
+  <td><code>Θ(1)</code> if capacity exists</td>
+</tr>
+<tr>
+  <td>Append to Dynamic Array</td>
+  <td>Amortized <code>O(1)</code></td>
+  <td>Resizing can use <code>O(n)</code></td>
+</tr>
+<tr>
+  <td>Reverse Mutable Array/String In-place</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Copy String Length n</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(n)</code> for copy</td>
+</tr>
+<tr>
+  <td>Count Character Frequencies (fixed alphabet)</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(1)</code> for fixed alphabet</td>
+</tr>
+<tr>
+  <td>Build String by repeatedly copying immutable prefixes</td>
+  <td><code>Θ(n²)</code> common naive pattern</td>
+  <td>Implementation-dependent</td>
+</tr>
+</tbody>
+</table>
+<h2>৬.১০ Algorithm Comparison Table (Most Tested)</h2>
+<table>
+<thead>
+<tr>
+  <th>Algorithm</th>
+  <th>Best Time</th>
+  <th>Average / Expected</th>
+  <th>Worst Time</th>
+  <th>Auxiliary Space</th>
+  <th>Stable?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Linear Search</td>
+  <td>Θ(1)</td>
+  <td>Θ(n)</td>
+  <td>Θ(n)</td>
+  <td>Θ(1)</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Binary Search (iterative)</td>
+  <td>Θ(1)</td>
+  <td>Θ(log n)</td>
+  <td>Θ(log n)</td>
+  <td>Θ(1)</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Bubble Sort (optimized)</td>
+  <td>Θ(n)</td>
+  <td>Θ(n²)</td>
+  <td>Θ(n²)</td>
+  <td>Θ(1)</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Selection Sort</td>
+  <td>Θ(n²)</td>
+  <td>Θ(n²)</td>
+  <td>Θ(n²)</td>
+  <td>Θ(1)</td>
+  <td>Usually No</td>
+</tr>
+<tr>
+  <td>Insertion Sort</td>
+  <td>Θ(n)</td>
+  <td>Θ(n²)</td>
+  <td>Θ(n²)</td>
+  <td>Θ(1)</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Merge Sort (array)</td>
+  <td>Θ(n log n)</td>
+  <td>Θ(n log n)</td>
+  <td>Θ(n log n)</td>
+  <td>Θ(n)</td>
+  <td>Yes</td>
+</tr>
+<tr>
+  <td>Quick Sort (randomized pivot)</td>
+  <td>Θ(n log n)</td>
+  <td>Expected Θ(n log n)</td>
+  <td>Θ(n²)</td>
+  <td>Stack: expected O(log n), worst O(n)</td>
+  <td>Usually No</td>
+</tr>
+<tr>
+  <td>Fibonacci (naive recursion)</td>
+  <td>By n: exponential</td>
+  <td>By n: exponential</td>
+  <td>Θ(φⁿ)</td>
+  <td>Θ(n) stack</td>
+  <td>N/A</td>
+</tr>
+<tr>
+  <td>Fibonacci (iteration)</td>
+  <td>By n: Θ(n)</td>
+  <td>Θ(n)</td>
+  <td>Θ(n)</td>
+  <td>Θ(1)</td>
+  <td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comparability Note:</strong> Fibonacci-এর Complexity-তে Input হলো <code>n</code>-এর Numeric Value; Bit-length of n বিবেচনা করলে Complexity Model বদলাবে। এখানে Conventional Introductory DSA Model ব্যবহার হয়েছে।</p>
+</section>
+<section class="chapter" id="chapter-7"><h1>৭. Bangladesh Government IT Exam &amp; Interview Preparation</h1>
+<blockquote>
+<p><strong>Source disclosure:</strong> নিচের প্রশ্নগুলো <strong>এই গাইডের জন্য তৈরি অনুশীলনী</strong>; যাচাইকৃত কোনো নির্দিষ্ট Bangladesh Government/Bank Past Paper হিসেবে দাবি করা হচ্ছে না।</p>
+</blockquote>
+<h2>৭.১ Written Exam-এর জন্য ছোট English Definitions</h2>
+<table>
+<thead>
+<tr>
+  <th>Term</th>
+  <th>Concise exam-ready definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Algorithm</td>
+  <td>A finite sequence of precise steps for solving a problem.</td>
+</tr>
+<tr>
+  <td>Time complexity</td>
+  <td>Asymptotic growth of operations with input size.</td>
+</tr>
+<tr>
+  <td>Space complexity</td>
+  <td>Asymptotic growth of memory requirement with input size.</td>
+</tr>
+<tr>
+  <td>Auxiliary space</td>
+  <td>Extra working memory excluding the input storage.</td>
+</tr>
+<tr>
+  <td>Big O</td>
+  <td>An asymptotic upper bound.</td>
+</tr>
+<tr>
+  <td>Big Omega</td>
+  <td>An asymptotic lower bound.</td>
+</tr>
+<tr>
+  <td>Big Theta</td>
+  <td>An asymptotically tight bound.</td>
+</tr>
+<tr>
+  <td>Best case</td>
+  <td>Minimum cost among inputs of the same size.</td>
+</tr>
+<tr>
+  <td>Worst case</td>
+  <td>Maximum cost among inputs of the same size.</td>
+</tr>
+<tr>
+  <td>Recursion</td>
+  <td>A technique in which a function calls itself, subject to a base case.</td>
+</tr>
+<tr>
+  <td>In-place algorithm</td>
+  <td>An algorithm using constant additional storage under the strict definition.</td>
+</tr>
+</tbody>
+</table>
+<h2>৭.২ Short-answer Questions (Worked)</h2>
+<p><strong>Q1. Why is Binary Search faster than Linear Search on large sorted arrays?</strong> Binary Search discards approximately half the remaining possibilities each step (<code>O(log n)</code> worst), whereas Linear Search may examine all n items (<code>O(n)</code> worst)। Sorted input এবং Direct Index Access প্রয়োজন।</p>
+<p><strong>Q2. What is the difference between <code>O(n)</code> and <code>Θ(n)</code>?</strong> <code>O(n)</code> শুধু Upper Bound; <code>Θ(n)</code> একই সঙ্গে Upper ও Lower Bound। যেমন <code>1 = O(n)</code> কিন্তু <code>1 ≠ Θ(n)</code>।</p>
+<p><strong>Q3. Why is Merge Sort <code>O(n log n)</code>?</strong> প্রায় log₂n স্তরের Divide Tree, প্রতিটি স্তরে মোট Θ(n) Merge Work; ফলে Θ(n log n) Time।</p>
+<p><strong>Q4. What is amortized complexity?</strong> Sequence of operations-এর মোট Cost ভাগ করে প্রতি Operation-এর গড় Guaranteed Bound; Dynamic Array Append-এর Amortized O(1), মাঝে মাঝে Resize O(n)। এটি Random Input-এর Average Case-এর সমার্থক নয়।</p>
+<p><strong>Q5. What is the difference between stack space and heap space?</strong> Recursion-related Active Function Frames সাধারণত Call Stack-এ থাকে; Dynamically allocated Arrays/Objects সাধারণত Heap/Managed Memory-তে থাকে। উভয়ই যথাযথ Space Analysis-এ বিবেচনা করতে হয়।</p>
+<h2>৭.৩ Code Output ও Calculation Practice</h2>
+<p><strong>Problem 1</strong></p>
+<pre><code class="language-c">for (int i=0; i&lt;4; i++) printf(&quot;%d&quot;, i);
+</code></pre>
+<p><strong>Output:</strong> <code>0123</code>; ৪টি Print। n কে Variable করলে Θ(n)।</p>
+<p><strong>Problem 2</strong></p>
+<pre><code class="language-c">int s=0;
+for (int i=1; i&lt;=4; i++) s+=i;
+printf(&quot;%d&quot;,s);
+</code></pre>
+<p><strong>Output:</strong> <code>10</code>; n পর্যন্ত করলে Θ(n) Time, Θ(1) Auxiliary।</p>
+<p><strong>Problem 3</strong></p>
+<pre><code class="language-c">for (int i=1; i&lt;=16; i*=2) printf(&quot;%d &quot;,i);
+</code></pre>
+<p><strong>Output:</strong> <code>1 2 4 8 16</code>; Θ(log n) যদি Upper Limit n হয়।</p>
+<p><strong>Problem 4</strong></p>
+<pre><code class="language-c">int c=0;
+for (int i=0; i&lt;4; i++)
+  for (int j=0; j&lt;i; j++) c++;
+printf(&quot;%d&quot;,c);
+</code></pre>
+<p><strong>Output:</strong> <code>6</code> (0+1+2+3); General Time Θ(n²)।</p>
+<p><strong>Problem 5:</strong> <code>T(n)=2T(n/2)+n</code> — <strong>Θ(n log n)</strong>। প্রতিটি স্তরের কাজ n; স্তর log n।</p>
+<p><strong>Problem 6:</strong> <code>T(n)=T(n/2)+1</code> — <strong>Θ(log n)</strong>; Input প্রতি Call-এ অর্ধেক।</p>
+<p><strong>Problem 7:</strong> <code>for(i=0;i&lt;n;i++) for(j=0;j&lt;m;j++) work();</code> — <strong>Θ(nm)</strong>, দুটি independent Dimension।</p>
+<p><strong>Problem 8:</strong> <code>for(i=1;i*i&lt;=n;i++) work();</code> — <strong>Θ(√n)</strong>, কারণ i চলে প্রায় √n পর্যন্ত।</p>
+<p><strong>Problem 9:</strong> DFS Traversal for n-node Tree — <strong>Θ(n)</strong> Time, <strong>O(h)</strong> Recursive Stack।</p>
+<p><strong>Problem 10:</strong> BFS Traversal for n-node Tree — <strong>Θ(n)</strong> Time, <strong>O(w)</strong> Queue।</p>
+<h2>৭.৪ MCQ Bank, Difficulty ও Interactive Practice Test</h2>
+<p>HTML Guide-এর <strong>MCQ Practice</strong> Tab-এ Beginner / Intermediate / Advanced নির্বাচন করে উত্তর দিন। সঙ্গে সঙ্গে সঠিক/ভুল, কারণ, Score এবং Reset পাবেন। PDF-এর শেষে সম্পূর্ণ Question Bank ও Answer Key সংযুক্ত আছে।</p>
+<h2>৭.৫ Interview-oriented Questions (Quick Responses)</h2>
+<ol>
+<li><strong>Why is O(n log n) often desirable for sorting?</strong> Comparison-based sorting has an Ω(n log n) Worst-case Lower Bound in the comparison model; Merge Sort achieves Θ(n log n)।</li>
+<li><strong>Can an O(n²) Algorithm outperform O(n log n)?</strong> নির্দিষ্ট ছোট n এবং Constant Factor-এ পারে; Asymptotic Class একা Benchmark নয়।</li>
+<li><strong>Why is Hash Lookup not guaranteed O(1)?</strong> Worst-case Collision Pattern-এ many keys একই Bucket-এ পড়ে O(n) পর্যন্ত হতে পারে (Implementation-এর ওপর নির্ভর করে)।</li>
+<li><strong>What is the memory cost of recursive Binary Search?</strong> Θ(log n) Stack, unless TCO/Optimization assumption explicitly given।</li>
+<li><strong>Does in-place always mean faster?</strong> না; Memory কমতে পারে, কিন্তু Operation/Cache Behavior/Algorithm ভিন্ন।</li>
+<li><strong>What if input is two dimensional?</strong> n এবং m যথাযথভাবে ধরে <code>Θ(nm)</code> বা <code>Θ(V+E)</code>-এর মতো Bound লিখতে হবে।</li>
+</ol>
+</section>
+<section class="chapter" id="chapter-8"><h1>৮. Final Revision Sheet — One-Page Exam Checklist</h1>
+<blockquote>
+<p><strong>Before writing the answer:</strong> Input Size চিহ্নিত করুন → Main Operation Count করুন → Worst/Average/Best Case আলাদা করুন → Dominant Term নিন → Auxiliary Space লিখুন।</p>
+</blockquote>
+<h2>৮.১ Formula Flashcards</h2>
+<table>
+<thead>
+<tr>
+  <th>Code Pattern / Idea</th>
+  <th>Time (Typical)</th>
+  <th>Memory Reminder</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>a[k]</code></td>
+  <td><code>Θ(1)</code></td>
+  <td><code>Θ(1)</code> extra</td>
+</tr>
+<tr>
+  <td><code>for i=0..n−1</code></td>
+  <td><code>Θ(n)</code></td>
+  <td>loop scalar <code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td><code>i *= 2</code></td>
+  <td><code>Θ(log n)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Two independent length-n loops</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Fully nested n×n loops</td>
+  <td><code>Θ(n²)</code></td>
+  <td><code>Θ(1)</code> if only scalars</td>
+</tr>
+<tr>
+  <td>Outer n, inner log n</td>
+  <td><code>Θ(n log n)</code></td>
+  <td><code>Θ(1)</code> if only scalars</td>
+</tr>
+<tr>
+  <td>Triple nested n×n×n</td>
+  <td><code>Θ(n³)</code></td>
+  <td><code>Θ(1)</code> if only scalars</td>
+</tr>
+<tr>
+  <td>Array copy</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(n)</code> new array</td>
+</tr>
+<tr>
+  <td>Recursive linear chain</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>Θ(n)</code> stack</td>
+</tr>
+<tr>
+  <td>Balanced Tree DFS</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>O(log n)</code> stack</td>
+</tr>
+<tr>
+  <td>Skewed Tree DFS</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>O(n)</code> stack</td>
+</tr>
+<tr>
+  <td>Tree BFS</td>
+  <td><code>Θ(n)</code></td>
+  <td><code>O(w)</code> queue</td>
+</tr>
+<tr>
+  <td>Binary Search iterative</td>
+  <td><code>Θ(log n)</code> worst</td>
+  <td><code>Θ(1)</code></td>
+</tr>
+<tr>
+  <td>Merge Sort</td>
+  <td><code>Θ(n log n)</code></td>
+  <td><code>Θ(n)</code></td>
+</tr>
+<tr>
+  <td>Quick Sort</td>
+  <td>Expected <code>Θ(n log n)</code> randomized</td>
+  <td>Expected <code>O(log n)</code> stack</td>
+</tr>
+</tbody>
+</table>
+<h2>৮.২ Rapid Memory Hooks</h2>
+<ul>
+<li><strong>Constant:</strong> Input বড় হলেও Direct Access-এর ধাপ স্থির।</li>
+<li><strong>Linear:</strong> প্রতিটি Element একবার।</li>
+<li><strong>Logarithmic:</strong> প্রতিবার অর্ধেক / নির্দিষ্ট Ratio-তে কমে।</li>
+<li><strong>Quadratic:</strong> প্রায় সব জোড়ার Comparison।</li>
+<li><strong>Recursive Space:</strong> সর্বোচ্চ Simultaneously Active Call Count।</li>
+<li><strong>Time বনাম Space:</strong> Operation Count আর Memory Count এক জিনিস নয়।</li>
+<li><strong>Big O বনাম Θ:</strong> Upper Bound বনাম Tight Bound।</li>
+<li><strong>Exam Safeguard:</strong> Worst/Expected/Amortized শব্দগুলো বাদ দেবেন না।</li>
+</ul>
+<p>&lt;details&gt;&lt;summary&gt;Suggested 30-minute Revision Plan&lt;/summary&gt;
+৫ মিনিট: Big O/Ω/Θ + Growth Ordering। ১০ মিনিট: ৮টি Loop/Recursion Pattern। ৫ মিনিট: ৭টি Sort/Search Algorithm Complexity Table। ১০ মিনিট: Advanced MCQ ও ভুলগুলো পুনরায় দেখুন।
+&lt;/details&gt;</p>
+</section><section id="exam-practice" class="quiz-panel"><h1>Interactive MCQ Practice &amp; Mock Test</h1><p class="hint">নিজে চেষ্টা করুন। Beginner, Intermediate ও Advanced Mode-এ উত্তর দিলে সঙ্গে সঙ্গে ব্যাখ্যা পাবেন। Practice Test-এ সব প্রশ্ন শেষ করে Submit করলে Answer Key দেখাবে।</p><div class="quiz-toolbar"><label>Difficulty <select id="quizMode"><option>Beginner</option><option>Intermediate</option><option>Advanced</option><option>Practice Test</option></select></label><strong class="score" id="quizScore">Score: 0</strong><button id="submitExam">Submit Test</button><button class="soft" id="quizReset">Reset answers</button></div><div id="quizList" class="quiz-grid" aria-live="polite"></div><p class="hint" style="margin-top:18px">নোট: এগুলো মূলত এই Study Guide-এর জন্য তৈরি Practice Questions; Verified Past Paper নয়।</p></section><footer class="footer">Offline Edition • No remote assets, CDN, or analytics • Accurate growth-based reasoning</footer></div></main><script>'use strict';
+const $ = id => document.getElementById(id);
+const qbank = [{"level":"Beginner","q":"Algorithm বলতে কী বোঝায়?","opts":["যেকোনো অসীম নির্দেশনা","সসীম ও স্পষ্ট ধাপের সমস্যা সমাধান পদ্ধতি","শুধুমাত্র Computer Program","Computer-এর RAM"],"a":1,"why":"Algorithm হলো সমস্যা সমাধানের finite, unambiguous step sequence।"},{"level":"Beginner","q":"Array-এর Element সংখ্যা 50 হলে n-এর মান কত?","opts":["5","10","50","500"],"a":2,"why":"এখানে Input Size হচ্ছে Array-এর দৈর্ঘ্য।"},{"level":"Beginner","q":"Time Complexity মূলত কী বোঝায়?","opts":["ফাইলের Size","Input বাড়লে Operation-এর Growth","Processor-এর দাম","শুধু Second"],"a":1,"why":"এটি Step/Operation Count-এর Growth Rate নির্দেশ করে।"},{"level":"Beginner","q":"Space Complexity মূলত কী মাপে?","opts":["Screen Brightness","CPU Frequency","Memory Requirement Growth","Internet Speed"],"a":2,"why":"Memory-এর ব্যবহার Input Size-এর সঙ্গে কীভাবে বাড়ে তা মাপে।"},{"level":"Beginner","q":"Fixed Array Index Access-এর সাধারণ Complexity কী?","opts":["O(1)","O(n)","O(n²)","O(2ⁿ)"],"a":0,"why":"সরাসরি Index Access সাধারণত Constant Time।"},{"level":"Beginner","q":"n বার চলা Single Loop-এর Time Complexity?","opts":["O(1)","O(n)","O(log n)","O(n!)"],"a":1,"why":"মোট n Iterations।"},{"level":"Beginner","q":"দুটি পরপর n-Iteration Loop-এর Time Complexity?","opts":["O(n²)","O(2n²)","O(n)","O(log n)"],"a":2,"why":"n+n=2n⇒Θ(n)।"},{"level":"Beginner","q":"দুটি স্বাধীন Nested n-Loop-এর Complexity?","opts":["O(log n)","O(n²)","O(n)","O(1)"],"a":1,"why":"n×n=n² Iterations।"},{"level":"Beginner","q":"Binary Search চালানোর প্রধান Precondition কী?","opts":["Unsorted Array","Sorted Data","Negative Numbers Only","Duplicate Not Allowed"],"a":1,"why":"Binary Search Ordered/Sorted structure-এর ওপর কাজ করে।"},{"level":"Beginner","q":"Linear Search-এর Worst-case Time?","opts":["Θ(log n)","Θ(1)","Θ(n)","Θ(n²)"],"a":2,"why":"সব Element পরীক্ষা করতে হতে পারে।"},{"level":"Beginner","q":"O(log n) কোন কাজের সঙ্গে সাধারণত মেলে?","opts":["প্রতিবার Search Space অর্ধেক","প্রতিটি Element দেখা","সব Pair পরীক্ষা","সব Permutation"],"a":0,"why":"প্রতিবার অর্ধেক করলে Steps logarithmically বাড়ে।"},{"level":"Beginner","q":"Auxiliary Space-এ কোনটি বাদ দেওয়া হয়?","opts":["Loop Variable","Temporary Buffer","Input Storage","Recursion Stack"],"a":2,"why":"Auxiliary Space হলো Input বাদে অতিরিক্ত Working Memory।"},{"level":"Beginner","q":"`T(n)=7n+3`-এর Tight Bound?","opts":["Θ(n²)","Θ(n)","Θ(1)","Θ(log n)"],"a":1,"why":"Leading Term হলো 7n।"},{"level":"Beginner","q":"Stack Data Structure-এর মূল নীতি কী?","opts":["FIFO","LIFO","Random Order","Sorted Order"],"a":1,"why":"Stack Last-In-First-Out নিয়মে কাজ করে।"},{"level":"Beginner","q":"Queue-এর নীতি কী?","opts":["LIFO","FIFO","Binary Splitting","Hashing"],"a":1,"why":"Queue First-In-First-Out নিয়মে কাজ করে।"},{"level":"Intermediate","q":"`for(i=1;i<n;i*=2)`-এর Time?","opts":["Θ(n)","Θ(n²)","Θ(log n)","Θ(1)"],"a":2,"why":"1,2,4,8,... এভাবে i দ্বিগুণ হয়।"},{"level":"Intermediate","q":"`T(n)=3n²+8n+1`-এর Θ?","opts":["Θ(n)","Θ(n²)","Θ(n³)","Θ(log n)"],"a":1,"why":"Dominant Term n²।"},{"level":"Intermediate","q":"`for(i=0;i<n;i++) for(j=0;j<m;j++)`-এর Time?","opts":["Θ(n+m)","Θ(nm)","Θ(n²)","Θ(m²)"],"a":1,"why":"Dimension দুটি স্বাধীন হওয়ায় n×m।"},{"level":"Intermediate","q":"Triangular Loop-এর `0+1+...+(n−1)` কত?","opts":["n²","n(n−1)/2","log₂n","n!"],"a":1,"why":"Arithmetic Series Formula।"},{"level":"Intermediate","q":"Balanced Binary Tree DFS Recursive Space?","opts":["O(1)","O(n²)","O(log n)","O(2ⁿ)"],"a":2,"why":"Balanced Tree Height Θ(log n), Recursive Stack O(h)।"},{"level":"Intermediate","q":"Worst-case Skewed Tree DFS Stack?","opts":["O(1)","O(log n)","O(n)","O(n²)"],"a":2,"why":"Height n−1 পর্যন্ত হতে পারে।"},{"level":"Intermediate","q":"Tree Level-order Traversal-এর Data Structure?","opts":["Queue","Stack Only","Heap Only","Hash Table Only"],"a":0,"why":"BFS-এর জন্য Queue ব্যবহৃত হয়।"},{"level":"Intermediate","q":"Optimized Bubble Sort-এর Best-case Time?","opts":["Θ(1)","Θ(n)","Θ(n log n)","Θ(n²)"],"a":1,"why":"Sorted Input-এ একটি pass শেষে swap না হলে থামে।"},{"level":"Intermediate","q":"Selection Sort-এর Worst-case Time?","opts":["Θ(n)","Θ(log n)","Θ(n²)","Θ(2ⁿ)"],"a":2,"why":"সব Case-এ প্রায় n(n−1)/2 Comparisons।"},{"level":"Intermediate","q":"Merge Sort-এর Typical Auxiliary Space (Array)?","opts":["Θ(1)","Θ(log n)","Θ(n)","Θ(n²)"],"a":2,"why":"Standard Merge Buffer-এ n Element Storage লাগে।"},{"level":"Intermediate","q":"Insertion Sort-এর Best Case?","opts":["Θ(n)","Θ(n²)","Θ(log n)","Θ(1)"],"a":0,"why":"Already-sorted Array-তে একটি Linear Pass লাগে।"},{"level":"Intermediate","q":"Recursive Binary Search-এর Stack Space (TCO না ধরে)?","opts":["Θ(1)","Θ(log n)","Θ(n)","Θ(n²)"],"a":1,"why":"Recursive Depth log n।"},{"level":"Intermediate","q":"Two consecutive loops Θ(n) and Θ(n²) হলে মোট?","opts":["Θ(n³)","Θ(n²)","Θ(n)","Θ(log n)"],"a":1,"why":"n+n²-এর Leading Term n²।"},{"level":"Intermediate","q":"Big O কী প্রকাশ করে?","opts":["Tight Bound Only","Lower Bound Only","Asymptotic Upper Bound","Exact Seconds"],"a":2,"why":"Big O Upper Bound; Case (best/worst) আলাদা বিষয়।"},{"level":"Intermediate","q":"`n=16`; ধারাবাহিক অর্ধেক ১-এ পৌঁছাতে কত Halving?","opts":["2","4","8","16"],"a":1,"why":"16→8→4→2→1; মোট 4টি Halving।"},{"level":"Advanced","q":"`T(n)=2T(n/2)+n`-এর Tight Bound?","opts":["Θ(n)","Θ(log n)","Θ(n log n)","Θ(n²)"],"a":2,"why":"প্রতি Level-এর কাজ n, Levels log n।"},{"level":"Advanced","q":"`T(n)=T(n/2)+1`-এর Tight Bound?","opts":["Θ(log n)","Θ(n)","Θ(n log n)","Θ(2ⁿ)"],"a":0,"why":"একটি Half Problem-এ Recursion হয়।"},{"level":"Advanced","q":"`f(n)=n` এবং `g(n)=n²`; কোনটি সত্য?","opts":["n = Θ(n²)","n = o(n²)","n = ω(n²)","n² = O(n)"],"a":1,"why":"n/n²=1/n→0।"},{"level":"Advanced","q":"`f(n)=3n+5`-এর জন্য কোনটি সঠিক?","opts":["শুধু O(n)","শুধু Ω(n)","Θ(n)","Θ(n²)"],"a":2,"why":"Upper ও Lower দুই Bound-ই linear।"},{"level":"Advanced","q":"`for(i=1;i*i<=n;i++)`-এর Time?","opts":["Θ(log n)","Θ(√n)","Θ(n)","Θ(n²)"],"a":1,"why":"i সর্বোচ্চ প্রায় √n পর্যন্ত যায়।"},{"level":"Advanced","q":"`for(i=0;i<n;i++){while(j<n) j++;}` যেখানে j=0 outside — complexity?","opts":["Θ(n²)","Θ(n log n)","Θ(n)","Θ(log n)"],"a":2,"why":"j সব Outer Iteration মিলিয়ে n বার বাড়ে, Reset হয় না।"},{"level":"Advanced","q":"Naive Recursive Fibonacci-এর Time-এর Tight Order (fixed-cost arithmetic)?","opts":["Θ(n)","Θ(n²)","Θ(φⁿ)","Θ(n!)"],"a":2,"why":"Call Tree Fibonacci Growth; φ≈1.618।"},{"level":"Advanced","q":"Naive Recursive Fibonacci-এর Stack Space?","opts":["Θ(1)","Θ(log n)","Θ(n)","Θ(φⁿ)"],"a":2,"why":"সবচেয়ে গভীর Call Chain n দৈর্ঘ্যের।"},{"level":"Advanced","q":"Randomized Quick Sort-এর Expected Time?","opts":["Θ(n²)","Θ(n log n)","Θ(log n)","Θ(1)"],"a":1,"why":"Random Pivot Balanced Partition-এর প্রত্যাশিত Cost n log n।"},{"level":"Advanced","q":"Quick Sort-এর Worst-case Time?","opts":["Θ(n log n)","Θ(n)","Θ(n²)","Θ(2ⁿ)"],"a":2,"why":"প্রতিবার n−1 ও 0 ভাগে Partition হলে quadratic।"},{"level":"Advanced","q":"Amortized O(1) Append-এর অর্থ কী?","opts":["প্রতিটি Append অবশ্যই O(1)","Operation Sequence-এর Average Charge constant","Average random input constant","Worst সব Operation n²"],"a":1,"why":"Resize O(n) হলেও অনেক Append মিলিয়ে প্রতি Append-এর amortized Cost O(1)।"},{"level":"Advanced","q":"Comparison-based sorting-এর Worst-case Lower Bound?","opts":["Ω(n)","Ω(log n)","Ω(n log n)","Ω(n²)"],"a":2,"why":"Comparison Decision Tree-তে অন্তত log₂(n!)=Ω(n log n) Comparisons দরকার।"},{"level":"Advanced","q":"একটি Sorted input-এর Binary Search best-case Cost?","opts":["Θ(1)","Θ(log n)","Θ(n)","Θ(n log n)"],"a":0,"why":"প্রথম Middle Element-এই পাওয়া গেলে একটি comparison।"},{"level":"Advanced","q":"Hash Table Search-এর General Worst Case হতে পারে?","opts":["Θ(1) সবসময়","O(log log n) সবসময়","O(n)","O(n!)"],"a":2,"why":"Collision/Implementation-এর কারণে বহু Item Scan হতে পারে।"},{"level":"Advanced","q":"কোন বক্তব্যটি সঠিক?","opts":["O(n²) algorithm কখনো O(n log n)-এর চেয়ে দ্রুত না","Θ(n) নিজে Time Unit","Big O বাস্তব Runtime নিশ্চিত করে","ছোট Input-এ Constant Factor গুরুত্বপূর্ণ"],"a":3,"why":"Asymptotic Bound বাস্তব Hardware/Constants প্রকাশ করে না।"},{"level":"Advanced","q":"Tree BFS Queue Space-এর প্রচলিত Bound?","opts":["O(h)","O(w)","O(log n) সবসময়","O(1) সবসময়"],"a":1,"why":"সর্বাধিক এক Level Width-এর সঙ্গে Queue-এর Size বৃদ্ধি পায়।"}];
+const chapterTitles = ["১. ভিত্তি: Algorithm, Analysis ও Input Size", "২. Asymptotic Notation: Big O, Ω, Θ, o, ω", "৩. Common Time Complexities ও Growth Chart", "৪. Code Analysis: Statement, Loop, Recursion", "৫. Space Complexity: Input, Auxiliary, Stack, Trade-off", "৬. Important Algorithms: Search, Sort, Fibonacci, Array & String", "৭. Bangladesh Government IT Exam & Interview Preparation", "৮. Final Revision Sheet — One-Page Exam Checklist"];
+const safe = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+// Theme: self-contained; localStorage is optional in file: URLs.
+function setTheme(v){document.documentElement.dataset.theme=v; $('themeToggle').textContent=v==='dark'?'☀ Light':'◐ Dark';try{localStorage.setItem('complexity-theme',v)}catch(e){}}
+let storedTheme='light';try{storedTheme=localStorage.getItem('complexity-theme')||'light'}catch(e){}setTheme(storedTheme);
+$('themeToggle').onclick=()=>setTheme(document.documentElement.dataset.theme==='light'?'dark':'light');
+$('menuToggle').onclick=()=>{$('sidebar').classList.toggle('open');$('menuToggle').setAttribute('aria-expanded',$('sidebar').classList.contains('open'))};
+document.querySelectorAll('.toc').forEach(a=>a.addEventListener('click',()=>{$('sidebar').classList.remove('open');$('menuToggle').setAttribute('aria-expanded','false')}));
+$('printBtn').onclick=()=>window.print();
+// Search links are generated from the actual notes; nothing fetched remotely.
+const targets=[...document.querySelectorAll('.chapter h1,.chapter h2,.chapter p,.chapter li')].filter(e=>e.textContent.trim().length>12);
+targets.forEach((e,i)=>{if(!e.id)e.id='note-'+i});
+let lastMarked=null;
+$('noteSearch').addEventListener('input',e=>{
+ const term=e.target.value.trim().toLocaleLowerCase(), box=$('searchResults');box.innerHTML='';
+ if(term.length<2){box.classList.remove('show');return}
+ const matches=targets.filter(t=>t.textContent.toLocaleLowerCase().includes(term)).slice(0,16);
+ if(!matches.length){box.innerHTML='<p class="hint" style="padding:10px">কোনো Matching Note পাওয়া যায়নি।</p>'}else{
+  matches.forEach(m=>{const btn=document.createElement('button');btn.className='result-item';const sec=m.closest('.chapter');const title=sec?sec.querySelector('h1').textContent:'';btn.innerHTML=safe(m.textContent.trim().slice(0,110))+'<small>'+safe(title)+'</small>';btn.onclick=()=>{if(lastMarked)lastMarked.classList.remove('search-target');m.classList.add('search-target');lastMarked=m;m.scrollIntoView({behavior:'smooth',block:'center'});box.classList.remove('show')};box.append(btn)})
+ }box.classList.add('show');
+});
+$('noteSearch').addEventListener('keydown',e=>{if(e.key==='Escape'){$('searchResults').classList.remove('show');e.target.value=''}});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))$('searchResults').classList.remove('show')});
+
+// Interactive Big-O growth graph, including option for logarithmic vertical scale.
+const funcs=[{name:'O(log n)',key:'log',color:'#0891b2',fn:n=>Math.log2(n)},{name:'O(n)',key:'linear',color:'#286cce',fn:n=>n},{name:'O(n log n)',key:'nlog',color:'#159b75',fn:n=>n*Math.log2(n)},{name:'O(n²)',key:'square',color:'#e18c28',fn:n=>n*n},{name:'O(2ⁿ)',key:'exp',color:'#d84b74',fn:n=>2**n}];
+let growthMax=12, logScale=true;
+function svgEl(name,attrs,txt){const e=document.createElementNS('http://www.w3.org/2000/svg',name);Object.entries(attrs||{}).forEach(([k,v])=>e.setAttribute(k,v));if(txt!==undefined)e.textContent=txt;return e}
+function graphRender(){
+ const svg=$('dynamicGraph');svg.replaceChildren();const L=65,T=18,W=645,H=260,B=T+H;
+ const ymax=2**growthMax, mapy=v=>B-(logScale?Math.log10(v+1)/Math.log10(ymax+1):v/ymax)*H;
+ for(let i=0;i<=4;i++){let y=T+H*i/4;svg.append(svgEl('line',{x1:L,y1:y,x2:L+W,y2:y,stroke:'var(--line)','stroke-width':1}));const exp=logScale?Math.round((1-i/4)*Math.log10(ymax+1)*100)/100:Math.round((1-i/4)*ymax);svg.append(svgEl('text',{x:L-9,y:y+4,'font-size':10,'text-anchor':'end',fill:'var(--muted)'},logScale?'10^'+exp:String(exp)))}
+ for(let n=2;n<=growthMax;n+=Math.max(1,Math.floor((growthMax-2)/7))){let x=L+(n-2)/(growthMax-2)*W;svg.append(svgEl('text',{x:x,y:B+19,'font-size':11,'text-anchor':'middle',fill:'var(--muted)'},String(n)))}
+ funcs.forEach(f=>{const points=[];for(let n=2;n<=growthMax;n++){const x=L+(n-2)/(growthMax-2)*W,y=mapy(f.fn(n));points.push(`${x},${y}`);const c=svgEl('circle',{cx:x,cy:y,r:4,fill:f.color,tabindex:0});c.append(svgEl('title',{},f.name+' n='+n+' : '+Math.round(f.fn(n)*100)/100));svg.append(c)}svg.append(svgEl('polyline',{points:points.join(' '),fill:'none',stroke:f.color,'stroke-width':3,'stroke-linejoin':'round'}))});
+ $('growthValues').innerHTML=funcs.map(f=>`<span style="border-left:4px solid ${f.color};padding:4px 9px;display:inline-block">${f.name}: <b>${Math.round(f.fn(growthMax)*100)/100}</b></span>`).join('');
+ $('growthNOut').textContent=String(growthMax);$('graphScaleLabel').textContent=logScale?'Logarithmic Y-axis (all curves visible)':'Linear Y-axis (large exponential dominates)';
+}
+$('growthN').oninput=e=>{growthMax=Number(e.target.value);graphRender()};$('graphScale').onclick=()=>{logScale=!logScale;graphRender()};graphRender();
+
+// Binary search state + step log.
+const bArr=[2,7,12,17,23,31,38,45,52];let bLo=0,bHi=bArr.length-1,bMid=-1,bDone=false,bFound=false,bHistory=[];
+function binaryRender(){
+ $('bsArray').innerHTML=bArr.map((v,i)=>`<div class="cell ${i<bLo||i>bHi?'out':''} ${i===bMid?'mid':''} ${bFound&&i===bMid?'found':''}"><small>i=${i}</small>${v}</div>`).join('');
+ $('bsStatus').textContent=bDone?(bFound?`Found! Target index = ${bMid}, total comparisons = ${bHistory.length}`:`Not found after ${bHistory.length} comparisons.`):`Current search range: [${bLo}, ${bHi}] — Next step চাপুন।`;
+ $('bsLog').innerHTML=bHistory.map((s,i)=>`<div>${i+1}. ${safe(s)}</div>`).join('');$('bsNext').disabled=bDone;
+}
+function binaryReset(){bLo=0;bHi=bArr.length-1;bMid=-1;bDone=false;bFound=false;bHistory=[];binaryRender()}
+$('bsTarget').onchange=binaryReset;$('bsReset').onclick=binaryReset;
+$('bsNext').onclick=()=>{
+ if(bDone)return;if(bLo>bHi){bDone=true;bHistory.push('Range empty → not found');binaryRender();return}
+ const target=Number($('bsTarget').value),lo=bLo,hi=bHi; bMid=Math.floor((bLo+bHi)/2); const value=bArr[bMid];
+ if(value===target){bFound=true;bDone=true;bHistory.push(`lo=${lo}, hi=${hi}, mid=${bMid}, value=${value}: MATCH`)}
+ else if(value<target){bHistory.push(`lo=${lo}, hi=${hi}, mid=${bMid}, ${value}<${target} → search RIGHT`);bLo=bMid+1}
+ else{bHistory.push(`lo=${lo}, hi=${hi}, mid=${bMid}, ${value}>${target} → search LEFT`);bHi=bMid-1}
+ if(bLo>bHi&&!bDone)bDone=true;binaryRender();
+};binaryReset();
+
+// Sorting algorithms create reproducible snapshots for user-controlled animation.
+const initial=[5,1,4,2,8,3];let sortStates=[],sortIndex=0,sortTimer=null;
+function snap(states,a,active,msg,sorted=[]){states.push({a:[...a],active:[...active],msg,sorted:[...sorted]})}
+function makeSort(algo){let a=[...initial],steps=[];snap(steps,a,[],'Initial array');const n=a.length;
+ if(algo==='bubble'){
+  for(let i=0;i<n-1;i++){let changed=false;for(let j=0;j<n-i-1;j++){snap(steps,a,[j,j+1],`Compare ${a[j]} and ${a[j+1]}`,Array.from({length:i},(_,k)=>n-1-k));if(a[j]>a[j+1]){[a[j],a[j+1]]=[a[j+1],a[j]];changed=true;snap(steps,a,[j,j+1],'Swap adjacent elements',Array.from({length:i},(_,k)=>n-1-k))}}snap(steps,a,[],`Pass ${i+1} complete`,Array.from({length:i+1},(_,k)=>n-1-k));if(!changed)break}
+ }else if(algo==='selection'){
+  for(let i=0;i<n-1;i++){let m=i;for(let j=i+1;j<n;j++){snap(steps,a,[m,j],`Compare current minimum ${a[m]} with ${a[j]}`,Array.from({length:i},(_,k)=>k));if(a[j]<a[m])m=j}if(i!==m){[a[i],a[m]]=[a[m],a[i]];snap(steps,a,[i,m],`Place minimum ${a[i]} at position ${i}`,Array.from({length:i+1},(_,k)=>k))}else snap(steps,a,[i],`Position ${i} already minimal`,Array.from({length:i+1},(_,k)=>k))}
+ }else{
+  for(let i=1;i<n;i++){let key=a[i],j=i-1;snap(steps,a,[i],`Insert key ${key} into sorted prefix`,Array.from({length:i},(_,k)=>k));while(j>=0&&a[j]>key){a[j+1]=a[j];snap(steps,a,[j,j+1],`Shift ${a[j]} right`,Array.from({length:i},(_,k)=>k));j--}a[j+1]=key;snap(steps,a,[j+1],`Place key ${key}`,Array.from({length:i+1},(_,k)=>k))}
+ }
+ snap(steps,a,[],'Sorted! Complete.',Array.from({length:n},(_,i)=>i));return steps;
+}
+function stopSort(){if(sortTimer!==null){clearInterval(sortTimer);sortTimer=null}}
+function sortRender(){const s=sortStates[sortIndex];$('sortBars').innerHTML=s.a.map((v,i)=>`<div class="sort-bar ${s.active.includes(i)?'active':s.sorted.includes(i)?'sorted':''}" style="height:${v*24+20}px">${v}</div>`).join('');$('sortStatus').textContent=s.msg;$('sortCounter').textContent=`Step ${sortIndex} / ${sortStates.length-1} · Orange = active, Green = sorted portion`; $('sortNext').disabled=sortIndex>=sortStates.length-1;$('sortPlay').disabled=sortIndex>=sortStates.length-1}
+function sortReset(){stopSort();sortStates=makeSort($('sortAlgo').value);sortIndex=0;sortRender()}
+$('sortAlgo').onchange=sortReset;$('sortSpeed').onchange=()=>{if(sortTimer){stopSort();sortPlay()}};$('sortReset').onclick=sortReset;
+$('sortNext').onclick=()=>{stopSort();if(sortIndex<sortStates.length-1)sortIndex++;sortRender()};
+function sortPlay(){stopSort();sortTimer=setInterval(()=>{if(sortIndex>=sortStates.length-1){stopSort();return}sortIndex++;sortRender()},Number($('sortSpeed').value))}
+$('sortPlay').onclick=sortPlay;$('sortPause').onclick=stopSort;sortReset();
+
+// Recursion: factorial call phase then unwind phase (the active frames are shown).
+let recSteps=[],recIndex=0;
+function makeRec(n){const s=[];for(let k=n;k>=1;k--){s.push({stack:Array.from({length:n-k+1},(_,i)=>n-i),msg:`Call factorial(${k})${k===1?' — base case returns 1':''}`})}let val=1;for(let k=1;k<=n;k++){if(k>1)val*=k;s.push({stack:Array.from({length:n-k+1},(_,i)=>n-i),msg:`Return factorial(${k}) = ${val}`})}s.push({stack:[],msg:`Complete: factorial(${n}) = ${val}. Stack is empty.`});return s}
+function recRender(){const st=recSteps[recIndex];$('recStack').innerHTML=st.stack.length?st.stack.map(k=>`<div class="stack-frame">factorial(${k})</div>`).join(''):'<div class="hint">Call stack empty</div>';$('recStatus').textContent=`Step ${recIndex+1}/${recSteps.length}: ${st.msg}`;$('recNext').disabled=recIndex===recSteps.length-1}
+function recReset(){recSteps=makeRec(Number($('recN').value));recIndex=0;recRender()}
+$('recN').onchange=recReset;$('recNext').onclick=()=>{recIndex=Math.min(recSteps.length-1,recIndex+1);recRender()};$('recReset').onclick=recReset;recReset();
+
+// Quiz: immediate feedback for study levels; full mixed mock test reveals on Submit.
+let quizMode='Beginner',answers={},submitted=false;
+const examIds=[0,1,4,7,9,11,15,17,19,22,24,26,30,31,33,36,39,40,42,45];
+function activeQuestions(){return quizMode==='Practice Test'?examIds.map(i=>({...qbank[i],qid:i})):qbank.map((q,i)=>({...q,qid:i})).filter(q=>q.level===quizMode)}
+function quizRender(){const questions=activeQuestions();let answered=Object.keys(answers).length,correct=questions.filter(q=>answers[q.qid]===q.a).length;
+ $('quizList').innerHTML=questions.map((q,i)=>{
+  const val=answers[q.qid],reveal=quizMode!=='Practice Test'?val!==undefined:submitted;
+  return `<div class="quiz-card"><div class="quiz-number">${safe(quizMode)} · Q${i+1}</div><div class="quiz-q">${safe(q.q)}</div>${q.opts.map((o,j)=>`<button class="answer ${reveal&&j===q.a?'right':''} ${reveal&&val===j&&j!==q.a?'wrong':''}" data-q="${q.qid}" data-a="${j}" ${val!==undefined||submitted?'disabled':''}><span class="letter">${'ABCD'[j]}</span>${safe(o)}</button>`).join('')}${reveal?`<div class="feedback"><strong>${val===q.a?'✓ সঠিক উত্তর':'সঠিক উত্তর: '+('ABCD'[q.a])+' — '+safe(q.opts[q.a])}</strong><br>${safe(q.why)}</div>`:''}</div>`}).join('');
+ $('quizScore').textContent=`Score: ${correct} correct / ${answered} answered / ${questions.length} total`; $('submitExam').style.display=quizMode==='Practice Test'?'inline-block':'none';$('submitExam').disabled=submitted||answered!==questions.length;
+ document.querySelectorAll('.answer[data-q]').forEach(b=>b.onclick=()=>{const qid=Number(b.dataset.q),j=Number(b.dataset.a);if(answers[qid]!==undefined||submitted)return;answers[qid]=j;quizRender()})
+}
+$('quizMode').onchange=e=>{quizMode=e.target.value;answers={};submitted=false;quizRender()};
+$('quizReset').onclick=()=>{answers={};submitted=false;quizRender()};
+$('submitExam').onclick=()=>{if(Object.keys(answers).length===activeQuestions().length){submitted=true;quizRender();$('quizScore').scrollIntoView({block:'center',behavior:'smooth'})}};quizRender();
+// Active sidebar TOC based on viewport position.
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{for(const en of entries)if(en.isIntersecting){document.querySelectorAll('.toc').forEach(a=>a.classList.toggle('active',a.hash==='#'+en.target.id))}},{rootMargin:'-20% 0px -65% 0px'});document.querySelectorAll('section.chapter,#exam-practice').forEach(c=>observer.observe(c))}
+
+// Bonus beginner visualizers recreate the linear and quadratic step-count examples.
+function linearRender(){const n=Number($('linearN').value);$('linearOut').textContent=`n = ${n}, iterations = ${n}`;$('linearCells').innerHTML=Array.from({length:n},(_,i)=>`<div class="cell"><small>${i}</small>${i+1}</div>`).join('')}
+function squareRender(){const n=Number($('squareN').value);$('squareOut').textContent=`${n} × ${n} = ${n*n} operations`;$('squareGrid').style.setProperty('--sqn',n);$('squareGrid').innerHTML=Array.from({length:n*n},()=>'<div class="sqcell"></div>').join('')}
+$('linearN').oninput=linearRender;$('squareN').oninput=squareRender;linearRender();squareRender();
+</script></body></html>

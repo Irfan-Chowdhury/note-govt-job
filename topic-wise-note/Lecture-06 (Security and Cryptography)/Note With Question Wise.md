@@ -5,24 +5,6 @@
 
 ## Previous Year Questions
 
-<!-- 1. Difference between cross site scripting and Sql injection [BCIC-2022]
-2. Describe sha -256 sha -512 [RPGCL-2022]
-3. What is digital signature [MRA-2022]
-4. your password is consist of lowercase, uppercase, numeric and special character (32 character). Password consist of 10 character. You should change your password after 30 days. If hacker wants to hack your password how many number off passwords should try in one second? Write down the attack name. [BDCCL-2022]
-5. Write down the counter measure of SQL injection attack. [BDCCL-2022]
-6. What is authentication and authorization in computer security. [EGCB-2022]
-7. For Hacking what is typed here [BIWTA-2023]
-i. All details about user
-ii. Drop the table.
-8. what is malware. Describe with example [43th BCS]
-9. what is public key and secret key encryption. [home affairs -2022]
-10. what is the difference between message confidentiality and message integrity? Can you have confidentiality without integrity? Can you have integrity without confidentiality? Justify your answer. **[home affairs -2022]**
-1. Briefly describe the relationship among `Threat`, `Vulnerability` and `Attack`. <br> **[MHA-ANE-2022]**
-1. What is SQL Injection ? How to prevent it ? **[BTV(AP)-2019]** 
-1. Write down the name of different attack through internet. **[HBFC & KB(AP)-2018]**
-1. Preserving Confidentiality, Integrity and availability of data is a restatement of the concern over falsification, interception, masquerade and denial-of-service. Explain how do the first three concepts relate to the last four. [BB-AP-2023] -->
-
-
 # 🗂️ Cyber Security & Cryptography: Study Order
 
 ## Step 1: Core Concepts (ভিত্তি)
@@ -36,8 +18,8 @@ ii. Drop the table.
 ## Step 2: Cryptography (Security-র হাতিয়ার)
 
 6. What is Cryptography? Distinguish between Symmetric (Secret Key) and Asymmetric (Public Key) Encryption with examples. Discuss cryptographic strength, ciphers, and how Public Key Encryption ensures Data Confidentiality, Integrity, and Authenticity. **(4 times)** [Combined Bank SO (IT), Combined Bank Assistant Network Engineer, West Zone Power Distribution Company Limited (WZPDCL), home affairs -2022]
-7. Describe sha -256 sha -512. [RPGCL-2022]
-8. How to create private and public key using RSA algorithm. [ICB Asset Management Company Ltd Assistant Programmer]
+7. Describe sha -256 & sha -512. [RPGCL-2022]
+8. How to create private and public key using RSA algorithm ? [ICB Asset Management Company Ltd Assistant Programmer]
 9. What is a digital signature? Describe its role in digital security and differentiate it from a digital certificate. **(3 times)** [Topic Wise, MRA-2022, Officer IT (2023 / General Section)]
 10. What is the difference between message confidentiality and message integrity? Can you have confidentiality without integrity? Can you have integrity without confidentiality? Justify your answer. [home affairs -2022]
 11. In which layer does IPsec work? [BCC Assistant Programmer]
@@ -518,7 +500,7 @@ composer audit      # dependency-তে জানা vulnerability খোঁজ�
 # 06. What is Cryptography? Distinguish between Symmetric (Secret Key) and Asymmetric (Public Key) Encryption with examples. Discuss cryptographic strength, ciphers, and how Public Key Encryption ensures Data Confidentiality, Integrity, and Authenticity. 
 
 
-# 📘 Handnote: Cryptography, Symmetric vs Asymmetric Encryption
+## 📘 Handnote: Cryptography, Symmetric vs Asymmetric Encryption
 
 ## ১. Cryptography কী?
 
@@ -672,3 +654,560 @@ openssl_verify($data, $signature, $publicKey, OPENSSL_ALGO_SHA256); // Verify
 
 
 <h2 align="center">─────── ✧ END ✧ ───────</h2> <br>
+
+
+# 7. Describe sha -256 & sha -512
+
+
+## 📘 Handnote: SHA-256 ও SHA-512
+
+## ১. Hash Function কী?
+
+**সংজ্ঞা:** Hash function যেকোনো দৈর্ঘ্যের data নিয়ে একটি **নির্দিষ্ট দৈর্ঘ্যের output (Hash/Digest)** তৈরি করে। এটি **one-way** প্রক্রিয়া, অর্থাৎ hash থেকে আসল data ফেরত পাওয়া যায় না।
+
+**SHA = Secure Hash Algorithm।** SHA-256 ও SHA-512 হলো **SHA-2 family**-র সদস্য। এটি NSA ডিজাইন করেছে এবং NIST ২০০১ সালে প্রকাশ করেছে (FIPS 180-2)।
+
+```
+Input (যেকোনো size) ──► [SHA-256] ──► ২৫৬-bit Digest (৬৪ hex অক্ষর)
+Input (যেকোনো size) ──► [SHA-512] ──► ৫১২-bit Digest (১২৮ hex অক্ষর)
+```
+
+**Example:** `SHA-256("abc")` =
+`ba7816bf 8f01cfea 414140de 5dae2223 b00361a3 96177a9c b410ff61 f20015ad`
+
+---
+
+## ২. SHA-256 ও SHA-512 কীভাবে কাজ করে (ধাপ)
+
+```
+Message ─► ১. Padding ─► ২. Block-এ ভাগ ─► ৩. Initial Hash Value (৮টি word)
+        ─► ৪. প্রতিটি block-এ Rounds (Compression) ─► ৫. Final Digest
+```
+
+| ধাপ | কাজ |
+|---|---|
+| **১. Padding** | Message-এর শেষে একটি `1` bit, তারপর `0` bit বসিয়ে block size-এর গুণিতক বানানো, শেষে message-এর দৈর্ঘ্য যুক্ত করা |
+| **২. Parsing** | Message-কে নির্দিষ্ট আকারের block-এ ভাগ করা |
+| **৩. Initialization** | ৮টি initial hash value (প্রথম ৮টি মৌলিক সংখ্যার **বর্গমূলের ভগ্নাংশ** থেকে নেওয়া) |
+| **৪. Compression** | প্রতিটি block-এ কয়েকটি round চালানো (bitwise AND, XOR, rotate, shift ও modular addition ব্যবহার করে)। Round constant আসে **ঘনমূলের ভগ্নাংশ** থেকে |
+| **৫. Output** | সব block শেষে চূড়ান্ত hash পাওয়া যায় |
+
+---
+
+## ৩. SHA-256 vs SHA-512 (তুলনা)
+
+| বিষয় | **SHA-256** | **SHA-512** |
+|---|---|---|
+| **Digest size** | **256 bit** (৬৪ hex অক্ষর) | **512 bit** (১২৮ hex অক্ষর) |
+| **Block size** | 512 bit | **1024 bit** |
+| **Word size** | 32 bit | **64 bit** |
+| **Round সংখ্যা** | **64** | **80** |
+| **Length field (padding-এ)** | 64 bit | 128 bit |
+| **Message সর্বোচ্চ size** | < 2⁶⁴ bit | < 2¹²⁸ bit |
+| **Collision resistance** | 2¹²⁸ | 2²⁵⁶ |
+| **গতি** | 32-bit system-এ ভালো | **64-bit CPU-তে বেশি দ্রুত** |
+| **নিরাপত্তা স্তর** | উচ্চ | আরও উচ্চ |
+| **ব্যবহার** | SSL/TLS, Bitcoin, Digital Signature, Certificate | উচ্চ নিরাপত্তা, বড় data, 64-bit server |
+
+**SHA-2 family-র অন্যান্য সদস্য:** SHA-224, SHA-384, SHA-512/224, SHA-512/256।
+
+---
+
+## ৪. Hash Function-এর বৈশিষ্ট্য (SHA-2 সবগুলো পূরণ করে)
+
+| বৈশিষ্ট্য | মানে |
+|---|---|
+| **Deterministic** | একই input সবসময় একই output |
+| **Fixed length** | Input যত বড়ই হোক, output নির্দিষ্ট size |
+| **One-way (Pre-image resistance)** | Hash থেকে input বের করা অসম্ভব |
+| **Collision resistance** | দুটি ভিন্ন input-এর একই hash পাওয়া প্রায় অসম্ভব |
+| **Avalanche effect** | Input-এ ১ bit বদলালে output **সম্পূর্ণ** বদলে যায় |
+
+---
+
+## ৫. ব্যবহার
+
+| ক্ষেত্র | কীভাবে |
+|---|---|
+| **Data Integrity** | File download-এর পর checksum মিলিয়ে দেখা |
+| **Digital Signature** | Message-এর hash sign করা হয় |
+| **SSL/TLS Certificate** | Certificate-এর signature-তে SHA-256 |
+| **Blockchain** | Bitcoin-এ double SHA-256 (mining ও block link) |
+| **HMAC** | Key সহ message authentication |
+| **Password সংরক্ষণ** | সরাসরি নয়, salt ও slow hash (bcrypt/Argon2) সহ |
+
+## Real Scenario
+**একটি সরকারি অফিস software update পাঠাচ্ছে।** সাথে ফাইলের **SHA-256 checksum** প্রকাশ করেছে। কর্মচারী download করে নিজে hash বের করে মিলিয়ে দেখল। মিলে গেলে ফাইল অপরিবর্তিত (**Integrity নিশ্চিত**), না মিললে পথে ফাইল বদলেছে বা নষ্ট হয়েছে।
+
+## Laravel Reference
+```php
+hash('sha256', $data);                    // SHA-256 (৬৪ hex অক্ষর)
+hash('sha512', $data);                    // SHA-512 (১২৮ hex অক্ষর)
+hash_hmac('sha256', $data, $secretKey);   // HMAC-SHA256 (API signature)
+hash_file('sha256', $filePath);           // File integrity checksum
+
+Hash::make($password);                    // Password-এর জন্য bcrypt/Argon2, SHA নয়
+```
+Password-এর জন্য **শুধু SHA ব্যবহার করবেন না**, কারণ SHA খুব দ্রুত, ফলে brute force সহজ হয়। Laravel-এর `Hash::make()` ইচ্ছা করেই ধীর।
+
+## 📌 মনে রাখার মতো তথ্য
+- **SHA-256 → 256 bit, 64 round, 512-bit block, 32-bit word।**
+- **SHA-512 → 512 bit, 80 round, 1024-bit block, 64-bit word।**
+- Hex length: SHA-256 = **৬৪**, SHA-512 = **১২৮** অক্ষর।
+- **SHA-1** = 160 bit, **ভাঙা/অনিরাপদ** (২০১৭ সালে Google collision দেখিয়েছে); **MD5** = 128 bit, অনিরাপদ।
+- **SHA-3 (Keccak)** = ২০১৫ সালে NIST standard, SHA-2-এর **বিকল্প**, ভিন্ন গঠন (sponge construction)।
+- SHA-2 এখনো নিরাপদ, তবে **length extension attack**-এর ঝুঁকি আছে, তাই MAC-এর জন্য **HMAC** ব্যবহার করুন।
+- Hash ও Encryption আলাদা: **Hash one-way, Encryption two-way (key দিয়ে ফেরত আসে)।**
+- Hash দিয়ে **Integrity** যাচাই হয়, **Confidentiality** নয়।
+
+## 🎯 পরীক্ষার টিপস
+- Written-এ ক্রম: **Hash-এর সংজ্ঞা → SHA-2 পরিচিতি → ধাপ → তুলনার table → ব্যবহার**। Table-টাই সবচেয়ে বেশি নম্বর আনে।
+- MCQ-তে সংখ্যাগুলো মুখস্থ রাখুন: **256/512, 64/80 round, 512/1024 block**।
+- "SHA-1 কেন বাদ?" এলে লিখুন: *Collision আক্রমণ সম্ভব প্রমাণিত হয়েছে।*
+
+---
+
+পরের নম্বর: **৮ নম্বর, RSA দিয়ে Public/Private key তৈরি** (এখানে একটা ছোট calculation-ও থাকবে)। শুরু করব?
+
+
+<h2 align="center">─────── ✧ END ✧ ───────</h2> <br>
+
+# 8. How to create private and public key using RSA algorithm ?
+
+## 📘 Handnote: RSA Algorithm দিয়ে Public ও Private Key তৈরি
+
+## ১. RSA কী?
+
+**RSA** (Rivest, Shamir, Adleman, ১৯৭৭) একটি **Asymmetric (Public Key) Encryption** algorithm। এর নিরাপত্তা নির্ভর করে **দুটি বড় prime সংখ্যার গুণফলকে আবার prime factor-এ ভাঙা অত্যন্ত কঠিন** হওয়ার ওপর।
+
+```
+Public Key (e, n)  ──► সবাইকে দেওয়া যায় (Encrypt / Signature Verify)
+Private Key (d, n) ──► শুধু মালিকের কাছে গোপন (Decrypt / Sign)
+```
+
+---
+
+## ২. Key তৈরির ধাপ (Key Generation)
+
+```
+Step 1: দুটি বড় prime বাছাই ──► p, q
+Step 2: n = p × q
+Step 3: φ(n) = (p−1) × (q−1)
+Step 4: e বাছাই  (1 < e < φ, gcd(e, φ) = 1)
+Step 5: d বের করা  (e × d) mod φ = 1
+Step 6: Public Key = (e, n)   |   Private Key = (d, n)
+```
+
+| ধাপ | কাজ | নিয়ম |
+|---|---|---|
+| **১** | দুটি আলাদা prime সংখ্যা **p, q** নেওয়া | বাস্তবে অনেক বড় (প্রতিটি ১০২৪ bit বা বেশি) এবং গোপন |
+| **২** | **n = p × q** | n-ই modulus, এর bit দৈর্ঘ্যই key size (যেমন 2048 bit) |
+| **৩** | **φ(n) = (p−1)(q−1)** | Euler's Totient |
+| **৪** | **e** বাছাই | 1 < e < φ(n) এবং **gcd(e, φ) = 1** (সাধারণত 65537) |
+| **৫** | **d** নির্ণয় | d = e⁻¹ mod φ(n), **Extended Euclidean Algorithm** দিয়ে |
+| **৬** | Key জোড়া ঘোষণা | **Public = (e, n)**, **Private = (d, n)** |
+
+> p, q, φ(n) ও d কখনো প্রকাশ করা যাবে না। এগুলো জানলেই Private key বের করা যায়।
+
+---
+
+## ৩. হাতে-কলমে Example (সংখ্যা ছোট রেখে)
+
+**ধাপ ১:** p = 3, q = 11
+
+**ধাপ ২:** n = 3 × 11 = **33**
+
+**ধাপ ৩:** φ(n) = (3−1)(11−1) = 2 × 10 = **20**
+
+**ধাপ ৪:** e = **7** (gcd(7, 20) = 1 ✅, এবং 1 < 7 < 20)
+
+**ধাপ ৫:** d বের করা: (7 × d) mod 20 = 1
+d = 3 হলে 7 × 3 = 21, 21 mod 20 = **1** ✅ তাই **d = 3**
+
+**ধাপ ৬:**
+- **Public Key = (7, 33)**
+- **Private Key = (3, 33)**
+
+### যাচাই: Encrypt ও Decrypt
+
+| কাজ | সূত্র | হিসাব |
+|---|---|---|
+| **Encrypt** (M = 2) | C = Mᵉ mod n | 2⁷ = 128, 128 mod 33 = **29** |
+| **Decrypt** | M = Cᵈ mod n | 29³ = 24389, 24389 mod 33 = **2** ✅ |
+
+ফলাফলে আসল message **2** ফেরত এল, অর্থাৎ key জোড়া সঠিক।
+
+---
+
+## ৪. Encryption/Decryption ও Signature-র সূত্র
+
+| কাজ | সূত্র | কোন key |
+|---|---|---|
+| **Encryption** | C = Mᵉ mod n | Receiver-এর **Public** |
+| **Decryption** | M = Cᵈ mod n | Receiver-এর **Private** |
+| **Signing** | S = Hᵈ mod n | Sender-এর **Private** |
+| **Verification** | H = Sᵉ mod n | Sender-এর **Public** |
+
+(M < n হতে হবে; H = message-এর hash)
+
+---
+
+## Real Scenario
+**একটি ব্যাংকের IT Officer নিজের server-এ secure login (SSH) চালু করছে:**
+1. সে নিজের computer-এ RSA key জোড়া তৈরি করল।
+2. **Public key** server-এ জমা দিল (সবাই দেখলেও ক্ষতি নেই)।
+3. **Private key** নিজের কাছে গোপন রাখল।
+4. Login-এর সময় server একটি challenge পাঠায়, Officer Private key দিয়ে তার উত্তর দেয়, server Public key দিয়ে যাচাই করে। Password পাঠাতে হয় না।
+
+## Laravel / PHP Reference
+```php
+// RSA key জোড়া তৈরি (PHP OpenSSL)
+$res = openssl_pkey_new([
+    'private_key_bits' => 2048,
+    'private_key_type' => OPENSSL_KEYTYPE_RSA,
+]);
+
+openssl_pkey_export($res, $privateKey);           // Private key
+$publicKey = openssl_pkey_get_details($res)['key']; // Public key
+```
+Terminal-এ:
+```bash
+openssl genrsa -out private.pem 2048
+openssl rsa -in private.pem -pubout -out public.pem
+```
+Laravel Passport/JWT-এর OAuth token-ও এভাবে তৈরি RSA key দিয়েই sign হয় (`php artisan passport:keys`)।
+
+## 📌 মনে রাখার মতো তথ্য
+- **n = p × q**, **φ(n) = (p−1)(q−1)**, **e·d ≡ 1 (mod φ)**, মুখস্থ রাখুন।
+- **Public = (e, n)**, **Private = (d, n)**।
+- **gcd(e, φ) = 1** অর্থাৎ e ও φ(n) পরস্পর **সহমৌলিক (coprime)**।
+- সাধারণ e-এর মান **65537** (2¹⁶ + 1)।
+- d বের করতে **Extended Euclidean Algorithm** লাগে।
+- **নিরাপত্তার ভিত্তি:** বড় সংখ্যার **Integer Factorization Problem**।
+- বর্তমানে ন্যূনতম **2048 bit** key (1024 bit এখন দুর্বল)।
+- RSA **Symmetric-এর চেয়ে ধীর**, তাই বড় data নয়, বরং **key বিনিময় ও Digital Signature**-এ ব্যবহার হয়।
+- বাস্তবে **OAEP padding** ছাড়া RSA ব্যবহার অনিরাপদ।
+- Quantum computer (**Shor's algorithm**) ভবিষ্যতে RSA ভাঙার ঝুঁকি তৈরি করে।
+
+## 🎯 পরীক্ষার টিপস
+- এই প্রশ্নে **সংখ্যাসহ উদাহরণ লেখা প্রায় বাধ্যতামূলক**। p=3, q=11 এর উদাহরণটি মুখস্থ রাখুন, এটি সবচেয়ে সহজ।
+- Written-এ ক্রম: **RSA পরিচিতি → ৬ ধাপ → সংখ্যার উদাহরণ → Encrypt/Decrypt যাচাই**।
+- MCQ-তে আসে: "φ(n) কত?", "d কীভাবে বের হয়?", "Public key-তে কী কী থাকে?"। হিসাব দ্রুত করার অভ্যাস করুন।
+- অন্য সংখ্যা এলে একই নিয়ম: যেমন p=5, q=11 হলে n=55, φ=40, e=3 হলে d=27 (3×27=81, 81 mod 40 = 1)।
+
+<h2 align="center">─────── ✧ END ✧ ───────</h2> <br>
+
+# 9. What is a digital signature? Describe its role in digital security and differentiate it from a digital certificate.
+
+# 📘 Handnote: Digital Signature বনাম Digital Certificate
+
+## ১. Digital Signature কী?
+
+**সংজ্ঞা:** Digital Signature হলো একটি **cryptographic পদ্ধতি**, যা হাতের সইয়ের ডিজিটাল রূপ। এতে message-এর **hash**-কে sender-এর **Private key** দিয়ে encrypt করা হয়। এর মাধ্যমে প্রমাণ হয় message কার পাঠানো এবং পথে বদলেছে কি না।
+
+> Digital Signature তৈরি হয় **Hash Function + Asymmetric Encryption** দিয়ে (যেমন SHA-256 + RSA)।
+
+### কীভাবে কাজ করে (Diagram)
+
+```
+SIGNING (Sender)
+Message ─► Hash (SHA-256) ─► Digest ─► Encrypt (Sender-এর PRIVATE key) ─► Signature
+   │                                                                          │
+   └──────────────────── Message + Signature পাঠানো হয় ◄─────────────────────┘
+
+VERIFYING (Receiver)
+Signature ─► Decrypt (Sender-এর PUBLIC key) ─► Digest-1
+Message   ─► Hash (SHA-256)                 ─► Digest-2
+                 Digest-1 = Digest-2 ?
+                 ✅ মিললে: Authentic ও Unchanged     ❌ না মিললে: বাতিল
+```
+
+| ধাপ | কাজ |
+|---|---|
+| **১** | Message-এর hash (digest) বের করা |
+| **২** | Sender তার Private key দিয়ে digest encrypt করে → **Signature** |
+| **৩** | Message ও Signature একসাথে পাঠানো |
+| **৪** | Receiver, Sender-এর Public key দিয়ে signature খুলে Digest-1 পায় |
+| **৫** | Receiver নিজে message-এর hash করে Digest-2 বের করে |
+| **৬** | দুটি মিললে signature বৈধ |
+
+---
+
+## ২. Digital Security-তে ভূমিকা
+
+| ভূমিকা | ব্যাখ্যা |
+|---|---|
+| **Authentication** | Private key শুধু sender-এর কাছে, তাই signature প্রমাণ করে সে-ই পাঠিয়েছে |
+| **Integrity** | Message-এর ১ bit বদলালেও hash মিলবে না, ফলে পরিবর্তন ধরা পড়ে |
+| **Non-repudiation** | Sender পরে অস্বীকার করতে পারে না যে সে পাঠায়নি |
+| **আইনি স্বীকৃতি** | অনেক দেশে (বাংলাদেশের ICT Act 2006-সহ) আইনত বৈধ |
+
+> **সতর্কতা:** Digital Signature **Confidentiality দেয় না।** Message গোপন রাখতে আলাদাভাবে encrypt করতে হয়।
+
+**ব্যবহার:** Software update যাচাই, e-mail signing, সরকারি e-tender, PDF/contract সই, Banking transaction, Blockchain transaction।
+
+---
+
+## ৩. Digital Certificate কী?
+
+**সংজ্ঞা:** Digital Certificate হলো একটি **electronic document**, যা **Certificate Authority (CA)** নামক বিশ্বস্ত তৃতীয় পক্ষ ইস্যু করে। এটি একটি **Public key-র সাথে একজন ব্যক্তি/প্রতিষ্ঠান/website-এর পরিচয়কে বেঁধে দেয়।** মানদণ্ড: **X.509**।
+
+### Certificate-এর ভেতরে কী থাকে
+
+```
+┌────────────────────────────────────────┐
+│ Version, Serial Number                 │
+│ Subject (মালিকের নাম / Domain)          │
+│ Subject-এর PUBLIC KEY                  │
+│ Issuer (CA-র নাম)                      │
+│ Validity (শুরু ও শেষের তারিখ)            │
+│ Signature Algorithm                    │
+│ ★ CA-র Digital Signature              │
+└────────────────────────────────────────┘
+```
+
+### Chain of Trust (বিশ্বাসের শৃঙ্খল)
+
+```
+Root CA ──signs──► Intermediate CA ──signs──► End Certificate (Website/User)
+(Browser-এ আগে থেকেই বিশ্বস্ত)
+```
+
+**কেন দরকার:** শুধু Public key পেলেই নিশ্চিত হওয়া যায় না এটা আসলে কার। Hacker নিজের Public key দিয়ে ব্যাংক সেজে বসতে পারে (Man-in-the-Middle)। Certificate প্রমাণ করে "এই Public key টি সত্যিই ব্যাংকের।"
+
+---
+
+## ৪. পার্থক্য: Digital Signature বনাম Digital Certificate
+
+| বিষয় | **Digital Signature** | **Digital Certificate** |
+|---|---|---|
+| **কী এটা** | Message/Document যাচাই করার **পদ্ধতি** | পরিচয় ও Public key-র **প্রমাণপত্র (ID card)** |
+| **উদ্দেশ্য** | Authentication, Integrity, Non-repudiation | Public key-র মালিকানা নিশ্চিত করা |
+| **কে তৈরি করে** | **Sender নিজে** (নিজের Private key দিয়ে) | **Certificate Authority (CA)** |
+| **কীসের ওপর** | Message/Data-র ওপর | Public key ও পরিচয়ের ওপর |
+| **ব্যবহৃত key** | Sender-এর Private key দিয়ে sign | CA-র Private key দিয়ে sign |
+| **ভেতরে থাকে** | Encrypted hash | Public key, নাম, মেয়াদ, CA-র signature |
+| **মেয়াদ** | নেই (message-ভিত্তিক) | **আছে**, মেয়াদ শেষে renew লাগে |
+| **বাতিল** | প্রযোজ্য নয় | **Revoke** করা যায় (CRL/OCSP) |
+| **উদাহরণ** | সই করা PDF, signed e-mail | **SSL/TLS Certificate** (https 🔒) |
+| **তুলনা** | হাতের **সই** | **জাতীয় পরিচয়পত্র/পাসপোর্ট** |
+
+> **সম্পর্ক:** Certificate-ও নিজে একটি **Digital Signature (CA-র)** বহন করে। আর Receiver, Sender-এর Public key-কে বিশ্বাস করে **Certificate দেখেই**। দুটো একসাথে কাজ করে।
+
+---
+
+## Real Scenario
+**একটি ব্যাংকের Head Office Branch-কে loan sanction letter পাঠাচ্ছে:**
+1. Manager letter-এর hash বের করে নিজের **Private key** দিয়ে **sign** করল (Digital Signature)।
+2. Branch, Manager-এর **Public key** চায়। কিন্তু এটা যে সত্যিই Manager-এর, তা নিশ্চিত হবে **Manager-এর Digital Certificate** দেখে (CA-র সই করা)।
+3. Certificate বৈধ হলে Branch signature যাচাই করল, hash মিলল, তাই letter আসল ও অপরিবর্তিত।
+
+আরেকটি: ব্রাউজারে ব্যাংকের site-এ ঢুকলে **তালা 🔒** মানে server-এর **SSL Certificate** CA-র দ্বারা যাচাই হয়েছে।
+
+## Laravel / PHP Reference
+```php
+// Digital Signature
+openssl_sign($data, $signature, $privateKey, OPENSSL_ALGO_SHA256);       // Sign
+$ok = openssl_verify($data, $signature, $publicKey, OPENSSL_ALGO_SHA256); // Verify (1 = বৈধ)
+
+// Digital Certificate যাচাই
+$info = openssl_x509_parse(file_get_contents('cert.pem'));  // Subject, Issuer, Validity
+```
+আপনার Laravel site-এ **HTTPS** চালু করতে যে **SSL Certificate** (যেমন Let's Encrypt) লাগে, সেটাই Digital Certificate।
+
+## 📌 মনে রাখার মতো তথ্য
+- **Signature তৈরি = Sender-এর Private key; যাচাই = Sender-এর Public key।**
+- Digital Signature দেয়: **Authentication + Integrity + Non-repudiation**। **Confidentiality নয়।**
+- Digital Certificate ইস্যু করে **CA (Certificate Authority)**; format **X.509**।
+- Certificate-এ **Public key থাকে, Private key কখনো না।**
+- **PKI (Public Key Infrastructure)** = CA, Certificate, Key ও নীতিমালার সমন্বিত কাঠামো।
+- Signature algorithm: **RSA, DSA, ECDSA**; মানদণ্ড **DSS (FIPS 186)**।
+- CA-র উদাহরণ: **DigiCert, GlobalSign, Sectigo, Let's Encrypt**।
+- Certificate বাতিলের তালিকা: **CRL (Certificate Revocation List)**, দ্রুত যাচাই: **OCSP**।
+- **Digital Signature ≠ Electronic Signature:** Electronic signature যেকোনো ডিজিটাল সই (যেমন ছবি), আর Digital signature **cryptography-ভিত্তিক**।
+- **Hash + Private key** না থাকলে নতুন message-এ একই signature বানানো অসম্ভব।
+
+## 🎯 পরীক্ষার টিপস
+- Written-এ ক্রম: **Digital Signature-র সংজ্ঞা → Sign/Verify diagram → ভূমিকা → Certificate-এর সংজ্ঞা ও ভেতরের অংশ → পার্থক্যের table**।
+- সহজ উপমা লিখলে ভালো লাগে: **Signature = সই, Certificate = পরিচয়পত্র**।
+- MCQ-তে ফাঁদ: "Digital Signature কোন key দিয়ে তৈরি?" উত্তর **Private key**। "Certificate কে দেয়?" উত্তর **CA**। "Signature কী দেয় না?" উত্তর **Confidentiality**।
+
+<h2 align="center">─────── ✧ END ✧ ───────</h2> <br>
+
+# 10. What is the difference between message confidentiality and message integrity? Can you have confidentiality without integrity? Can you have integrity without confidentiality? Justify your answer.
+
+## 📘 Handnote: Message Confidentiality বনাম Message Integrity
+
+## ১. সংজ্ঞা ও পার্থক্য
+
+| বিষয় | **Message Confidentiality** (গোপনীয়তা) | **Message Integrity** (অখণ্ডতা) |
+|---|---|---|
+| **মূল প্রশ্ন** | বার্তা **কে পড়তে পারবে?** | বার্তা **বদলেছে কি না?** |
+| **সংজ্ঞা** | শুধু অনুমোদিত প্রাপক বার্তা পড়তে পারবে, অন্য কেউ নয় | বার্তা পথে অপরিবর্তিত ও অক্ষত আছে, তার নিশ্চয়তা |
+| **হুমকি** | Interception, Eavesdropping, Sniffing | Falsification, Tampering, Modification |
+| **Attack-এর ধরন** | **Passive** (শুধু দেখে) | **Active** (বদলায়) |
+| **প্রযুক্তি** | **Encryption** (AES, RSA) | **Hash, MAC/HMAC, Digital Signature** |
+| **ফলাফল** | বার্তা অপাঠ্য হয় | পরিবর্তন **ধরা পড়ে** |
+| **ব্যর্থ হলে** | তথ্য ফাঁস | তথ্য ভুল/জাল হয় |
+| **উদাহরণ** | HTTPS-এ ব্যাংকের লেনদেন গোপন থাকা | Download করা file-এর SHA-256 মেলানো |
+
+```
+Confidentiality: Sender ─[🔒 Encrypt]─► (অপাঠ্য) ─► Receiver ─[🔓 Decrypt]
+                          Eve দেখলেও কিছু বুঝবে না
+
+Integrity:       Sender ─[Message + MAC/Signature]─► Receiver ─[Verify]
+                          Eve বদলালে Receiver ধরে ফেলবে
+```
+
+---
+
+## ২. Confidentiality আছে, কিন্তু Integrity নেই: সম্ভব কি? **হ্যাঁ, সম্ভব**
+
+**যুক্তি:** শুধু Encryption করলে Attacker বার্তা পড়তে পারে না, কিন্তু **ciphertext বদলে দিতে পারে**। Receiver decrypt করলে ভুল বা জাল বার্তা পাবে, এবং ধরতে পারবে না।
+
+### Example: Bit-flipping Attack (Stream Cipher)
+Stream cipher-এ **Ciphertext = Plaintext ⊕ Keystream**। তাই ciphertext-এর কোনো bit উল্টালে decrypt করা plaintext-এর **একই জায়গার bit** উল্টে যায়।
+
+```
+আসল বার্তা : "PAY 100 TAKA"      Attacker key জানে না, তাই পড়তে পারে না ✔
+Attacker জানে amount কোথায় থাকে, ওই অংশের ciphertext-এর সাথে XOR করে
+ফলাফল     : "PAY 900 TAKA"      Receiver decrypt করে ৯০০ পেল ✘
+```
+('1' = 0x31, '9' = 0x39, পার্থক্য 0x08; ওই bit উল্টালেই অঙ্ক বদলে যায়।)
+
+**সিদ্ধান্ত:** বার্তা **গোপন ছিল** (C ✅), কিন্তু **অক্ষত থাকেনি** (I ❌)। একই সমস্যা আছে **One-Time Pad, CBC mode (MAC ছাড়া)** ইত্যাদিতে (এই ধর্মকে **Malleability** বলে)।
+
+---
+
+## ৩. Integrity আছে, কিন্তু Confidentiality নেই: সম্ভব কি? **হ্যাঁ, সম্ভব**
+
+**যুক্তি:** বার্তা **plaintext-এ** পাঠিয়ে সাথে **Digital Signature বা MAC** যুক্ত করলে যে কেউ বার্তা পড়তে পারে, কিন্তু কেউ বদলালে **যাচাইয়ে ধরা পড়ে।**
+
+```
+Message (plaintext, সবাই পড়তে পারে) + Signature/MAC
+        │
+Eve বদলালে ──► Receiver-এর Verify ব্যর্থ ──► ❌ বাতিল
+```
+
+### Example
+| ক্ষেত্র | কীভাবে |
+|---|---|
+| **সরকারি প্রজ্ঞাপন** | সবাই পড়তে পারে (গোপন নয়), কিন্তু Digital Signature দিয়ে আসল প্রমাণিত |
+| **Software download** | ফাইল উন্মুক্ত, সাথে SHA-256 checksum (সতর্কতা: checksum অবশ্যই **নিরাপদ চ্যানেলে** থাকতে হবে) |
+| **Signed e-mail (শুধু sign)** | মেইল পড়া যায়, কিন্তু পরিবর্তন ধরা পড়ে |
+
+**সিদ্ধান্ত:** বার্তা **খোলা** (C ❌), কিন্তু **অপরিবর্তিত** (I ✅)।
+
+> **সতর্কতা:** Integrity-র জন্য শুধু plain hash যথেষ্ট নয়। Attacker বার্তা বদলে নতুন hash-ও বানিয়ে দিতে পারে। তাই **key-যুক্ত HMAC** বা **Digital Signature** দরকার।
+
+---
+
+## ৪. সারসংক্ষেপ (চারটি অবস্থা)
+
+| অবস্থা | Confidentiality | Integrity | উদাহরণ |
+|---|---|---|---|
+| শুধু Encryption | ✅ | ❌ | Stream cipher, MAC ছাড়া CBC |
+| শুধু Signature/MAC | ❌ | ✅ | Signed public notice |
+| দুটিই | ✅ | ✅ | **HTTPS/TLS, AES-GCM, Encrypt-then-MAC** |
+| কোনোটিই নয় | ❌ | ❌ | সাধারণ HTTP, plain text |
+
+**সমাধান:** দুটিই দরকার হলে **Authenticated Encryption (AEAD)** ব্যবহার করুন, যেমন **AES-GCM**। নিয়ম হলো **Encrypt-then-MAC**।
+
+---
+
+## Real Scenario
+**একটি ব্যাংকের Transfer Order:**
+- শুধু **encrypt** করা: Hacker পড়তে পারে না, কিন্তু ciphertext বদলে টাকার অঙ্ক পাল্টে দিতে পারে, ব্যাংক ধরতে পারে না।
+- শুধু **sign** করা: Hacker order পড়তে পারে (গোপনীয়তা নেই), কিন্তু বদলালে ব্যাংক signature যাচাইয়ে ধরে ফেলে।
+- **দুটিই:** Order গোপনও থাকে, বদলালে ধরাও পড়ে। এটাই বাস্তবে ব্যবহৃত পদ্ধতি।
+
+## Laravel Reference
+```php
+// Confidentiality + Integrity (দুটিই): Laravel Crypt
+$enc = Crypt::encryptString('PAY 100');   // AES + MAC (বদলালে decrypt-এ exception)
+
+// শুধু Integrity (Confidentiality ছাড়া): Signed URL
+$url = URL::signedRoute('invoice.show', ['id' => 5]);   // URL পড়া যায়, বদলালে 403
+
+hash_hmac('sha256', $data, $key);         // HMAC (শুধু integrity)
+```
+Laravel-এর `Crypt` MAC সহ encrypt করে, তাই ciphertext বদলালে `DecryptException` দেয়। আর **signed URL** হলো **Integrity without Confidentiality**-র নিখুঁত উদাহরণ।
+
+## 📌 মনে রাখার মতো তথ্য
+- **Confidentiality → Encryption; Integrity → Hash/MAC/Digital Signature।**
+- দুটি **স্বাধীন**, একটি থাকলে অন্যটি আপনাআপনি পাওয়া যায় না।
+- Encryption একা Integrity দেয় না, কারণ **Malleability**।
+- Digital Signature একা Confidentiality দেয় না।
+- **Interception = Passive attack (C নষ্ট); Modification = Active attack (I নষ্ট)।**
+- **AEAD** (AES-GCM, ChaCha20-Poly1305) একসাথে C ও I দেয়।
+- **MAC** (Message Authentication Code) = key + message থেকে তৈরি tag; **HMAC** তার hash-ভিত্তিক রূপ।
+- **Hash একা** Integrity-র জন্য যথেষ্ট নয়; Attacker নতুন hash বানাতে পারে।
+- **Encrypt-then-MAC** সবচেয়ে নিরাপদ ক্রম।
+
+## 🎯 পরীক্ষার টিপস
+- Written-এ ক্রম: **পার্থক্যের table → দুটি প্রশ্নের উত্তর "হ্যাঁ" + আলাদা যুক্তি ও example → চার অবস্থার table**। "Justify" শব্দ থাকলে **যুক্তি ও উদাহরণ ছাড়া উত্তর অসম্পূর্ণ**।
+- সহজ ভাষায় সারকথা লিখুন: *"Encrypt করলে পড়তে পারে না, কিন্তু বদলাতে পারে। Sign করলে পড়তে পারে, কিন্তু বদলাতে পারে না।"*
+- MCQ-তে মনে রাখুন: **Signed URL / সরকারি প্রজ্ঞাপন = Integrity without Confidentiality; Bit-flipping = Confidentiality without Integrity।**
+
+
+<h2 align="center">─────── ✧ END ✧ ───────</h2> <br>
+
+
+
+
+
+
+
+
+
+
+<!-- ## Previous Year Questions
+
+1. What is authentication and authorization? What is the CIA triad in cybersecurity? [ Combined Officer (IT) Recruitment Test 2026]
+2. What is social engineering? What is vulnerability assessment? How is it different from encryption? What is hashing? [ Combined Officer (IT) Recruitment Test 2026]
+3. A new employee joins the bank. Describe the process of creating a new user account for them, focusing on security best practices (e.g., password policies) [ Combined Officer (IT) Recruitment Test 2026]
+4. Cyber risk management in financial institutions. [ Assistant Database Administrator]
+5. Suppose your workstation affect ransomware attack so what five steps you take to mitigate this problem? [ Assistant Database Administrator]
+6. What is Phishing? What are the types of phishing and prevention measures? [ Assistant Database Administrator]
+7. What is firewall? Difference between stateful inspection and new technology firewall (NGFW). [ Assistant Database Administrator]
+8. Firewall rules: Rule 1: A source destination B port is 89. Rule 2: A source destination B less than 443. Rule 3: A source destination B port is 443. When a packet comes from 443, is it accepted or rejected? Explain the procedure (First inspection rules). [ Assistant Database Administrator]
+9. Describe how the principles of Confidentiality, Integrity, and Availability (CIA Triad) work together to protect organizational data, and provide one real-world example of a security breach where one or more principles were compromised. [ Senior Officer (IT) – Grade 9]
+10. What preventive measures should be taken to ensure cyber security of the IT equipments and systems of an office? [মি ব্যবস্থাপনা অটোমেশন প্রকল্প, ভূমিমন্ত্রণালয়]
+11. An Intrusion Prevention System (IPS) frequently blocks large print jobs sent to a high-capacity del printer, flagging them as potential data exfiltration attempts. Smaller jobs print successfully. (a) How would you analyze IPS alerts and traffic patterns to confirm whether these are false positives? (b) What tuning strategies would you apply to balance security monitoring and operational efficiency? [মি ব্যবস্থাপনা অটোমেশন প্রকল্প, ভূমিমন্ত্রণালয়]
+12. Let you procure a microfinance application and host it in your office's data center. What kind of cyber-security threats should you be aware of and what steps would you take to mitigate the threats? [Combined Senior Officer (IT)]
+13. What do you mean by the CIA Triad of Information/Cyber security? What are the 10 most common types of Cyber-attacks today? Discuss how do the Ransomware attack and DDOS attack work? [Combined Bank SO (IT)]
+14. What is Cryptography? Distinguish between Symmetric Encryption and Asymmetric Encryption with example. Draw a diagram and discuss how Public Key (Asymmetric) Encryption using Hash function ensures Data Confidentiality, Data Integrity, Authenticity of sender and receiver in e-commerce or online transactions. [Combined Bank SO (IT)]
+15. In which layer does IPsec work? [BCC Assistant Programmer]
+16. Software downloaded from the internet and installed that is malicious is called what? [BCC Assistant Programmer]
+17. What are hackers who find bugs and vulnerabilities called? [BCC Assistant Programmer]
+18. What is the function of a firewall? [BCC Assistant Programmer]
+19. How to create private and public key using RSA algorithm. [ICB Asset Management Company Ltd Assistant Programmer]
+20. How to provide system Security. [ICB Asset Management Company Ltd Assistant Programmer]
+21. What is the difference between Web application firewall and Network Firewall. [BR Power Generation Company Limited (PGCL)]
+22. Difference between digital signature and certificate. Write down the definition of White hat, Black hat and gray hat hackers. [Officer IT (2023 / General Section)]
+23. benefits of network firewall. Types of firewall. Difference of Traditional firewall and next generation firewall. [Officer IT (2023 / General Section)]
+24. Draw a diagram of LAN including network Firewall. Why is firewall important in network [Combined Bank Assistant Network Engineer]
+25. Distinguish between Symmetric Encryption and Asymmetric Encryption. Give some examples of encryption algorithms. What are the different types of ciphers in cryptography? What are the factors to be considered for cryptographic strength? [Combined Bank Assistant Network Engineer]
+26. What is asymmetric cryptosystems? Write an example of it. [West Zone Power Distribution Company Limited (WZPDCL)]
+27. Preserving confidentiality, integrity and availability of data is a restatement of the concern over falsification, interception, masquerade and denial-of-service. Explain how do the first three concepts relate to the last four. [Previous Random Important Questions]
+28. MAC flooding, Piggy Backing? [Previous Random Important Questions]
+29. What is a digital signature. Describe its role in digital security? [Topic Wise]
+30. What does mean by DDoS attack? [Topic Wise]
+31. Difference between cross site scripting and Sql injection [BCIC-2022]
+32. Describe sha -256 sha -512 [RPGCL-2022]
+33. What is digital signature [MRA-2022]
+34. your password is consist of lowercase, uppercase, numeric and special character (32 character). Password consist of 10 character. You should change your password after 30 days. If hacker wants to hack your password how many number off passwords should try in one second? Write down the attack name. [BDCCL-2022]
+35. Write down the counter measure of SQL injection attack. [BDCCL-2022]
+36. What is authentication and authorization in computer security. [EGCB-2022]
+37. For Hacking what is typed here [BIWTA-2023]
+i. All details about user
+ii. Drop the table.
+38. what is malware. Describe with example [43th BCS]
+39. what is public key and secret key encryption. [home affairs -2022]
+40. what is the difference between message confidentiality and message integrity? Can you have confidentiality without integrity? Can you have integrity without confidentiality? Justify your answer. **[home affairs -2022]**
+41. Briefly describe the relationship among `Threat`, `Vulnerability` and `Attack`. <br> **[MHA-ANE-2022]**
+42. What is SQL Injection ? How to prevent it ? **[BTV(AP)-2019]** 
+43. Write down the name of different attack through internet. **[HBFC & KB(AP)-2018]**
+44. Preserving Confidentiality, Integrity and availability of data is a restatement of the concern over falsification, interception, masquerade and denial-of-service. Explain how do the first three concepts relate to the last four. [BB-AP-2023]
+ -->
+
